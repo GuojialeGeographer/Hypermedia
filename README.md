@@ -1,248 +1,193 @@
-# 瑜伽工作室网站 (Yoga Studio Website)
+# Hypermedia 课程项目: Visionari Digitali - 瑜伽中心
 
-## 项目整理计划
+本项目是为米兰理工大学 "HYP 2024-2025 Hypermedia Applications" 课程开发的瑜伽中心网站。它严格遵循课程官方发布的 `Design and Development Project` 指导文件，旨在构建一个满足所有评估标准的功能性、数据驱动、响应式的Web应用。
 
-### 1. 图片资源整理 ✅
-- 统一图片路径命名规范，所有图片应放在 `/public/img/` 目录下
-- 创建缺失的图片目录结构
-- 确保所有API中引用的图片都存在
+**该文档是项目的“单一事实来源 (Single Source of Truth)”，所有开发工作必须以此为准。**
 
-### 2. API数据整理 ✅
-- 统一API返回的数据格式
-- 确保所有API返回的图片路径正确
-- 完善API数据，添加必要的字段
+## 目录
 
-### 3. 页面完善 ✅
-- 确保所有页面正确显示数据
-- 完善导航和路由
-- 检查响应式设计
+- [✅ **核心评估清单 (Grading Checklist)**](#-核心评估清单-grading-checklist)
+- [🛠️ **最终技术栈 (Final Tech Stack)**](#️-最终技术栈-final-tech-stack)
+- [🚀 **项目设置与启动 (Setup & Launch)**](#-项目设置与启动-setup--launch)
+- [📖 **开发核心指南 (Development Guide)**](#-开发核心指南-development-guide)
+  - [1. 目录结构规范](#1-目录结构规范)
+  - [2. 数据流：从DB设计到API实现](#2-数据流从db设计到api实现)
+  - [3. 组件化策略：自定义优先](#3-组件化策略自定义优先)
+  - [4. SEO、可访问性与响应式设计](#4-seo可访问性与响应式设计)
+- [🚢 **部署流程 (Deployment)**](#-部署流程-deployment)
+- [📋 **最终交付物清单 (Final Deliverables)**](#-最终交付物清单-final-deliverables)
 
-### 4. 组件完善 ✅
-- 检查所有组件是否正常工作
-- 统一组件样式
-- 确保组件复用性
+## ✅ 核心评估清单 (Grading Checklist)
 
-### 5. 功能测试 ⏳
-- 测试所有页面和功能
-- 修复发现的问题
+以下是根据官方 `Project Implementation` 文件整理的**必须完成**的功能点，直接对应最终评分。
 
-## 📖 开发指南与规范
+### 1. 内容与关系 (Content & Relations)
 
-这是项目的核心部分，请始终严格遵守，没有我的允许不可以修改当前文件。
+- [ ] **教师 (Teachers)**: **至少 5 位**。每位需包含图片和简短CV。
+- [ ] **活动 (Activities)**: **至少 8 种**。每种需包含图片、描述和时间表等信息。
+- [ ] **关系 (Relationships)**: **必须**实现教师与活动之间的多对多关系，并在页面清晰展示。
 
-### 1. 项目结构
+### 2. 页面与路由 (Pages & Routes)
 
-我们将采用 Nuxt 3 的标准目录结构，并在此基础上进行扩展：
+- [ ] homepage：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-191&m=dev
+- [ ] home/shop：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-75&m=dev
+- [ ] home/shop/apparel：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-45&m=dev
+- [ ] home/shop/apparel/top：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-51&m=dev
+- [ ] home/shop/apparel/bottoms：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-47&m=dev
+- [ ] home/shop/apparel/jacket：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-49&m=dev
+- [ ] home/shop/apparel/new arrivals：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=140-184&m=dev
+- [ ] home/activities：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-388&m=dev
+- [ ] home/team：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=125-235&m=dev
+- [ ] home/classes：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=15-6&m=dev
+- [ ] home/about us：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=126-842&m=dev
+- [ ] home/contact us https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-97&m=dev
+- [ ] home/faq：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-959&m=dev
+- [ ] home/refund policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-719&m=dev
+- [ ] home/terms of service：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-788&m=dev
+- [ ] home/Private policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-883&m=dev
+
+### 3. 技术实现 (Technical Implementation)
+
+- [ ] **框架**: **必须**使用 Vue3 和 Nuxt3。
+- [ ] **渲染模式**: 在 `nuxt.config.ts` 中**必须明确指定** (我们选择 `ssr: false` 进行SSG)。
+- [ ] **服务器/数据库**: **必须**实现一个服务器（我们用Nuxt Server Routes），页面**必须**从该服务器获取数据（我们用JSON文件模拟DB）。
+- [ ] **组件**: **必须创建自定义组件**，不能过度依赖第三方库。展示组件的**结构和可复用性**。
+- [ ] **代码注释**: 代码应包含有意义的注释。
+
+### 4. 网站特性 (Website Features) 
+
+- [ ] **SEO优化**: 必须实现SEO最佳实践（如独特的`title`/`meta`标签、语义化HTML等）。
+- [ ] **响应式设计 (Responsiveness)**: 界面必须能适应移动设备。
+- [ ] **可访问性 (Accessibility)**: 必须符合无障碍准则（如`alt`文本、高对比度等）。
+
+---
+
+## 🛠️ 最终技术栈 (Final Tech Stack)
+
+| 分类         | 技术/库                | 官方说明 & 最终选择                                          |
+| :----------- | :--------------------- | :----------------------------------------------------------- |
+| **核心框架** | **Nuxt 3 & Vue 3**     | **强制要求**。使用 TypeScript。                              |
+| **CSS方案**  | **Tailwind CSS**       | 官方允许，**项目首选**。它强制自定义组件，完美符合要求。     |
+| **组件库**   | **原则上不用**         | **策略**：所有UI元素（按钮、卡片）全部自定义。只在需要**复杂**组件（如轮播图）时，才考虑引入一个轻量级库（如 `vue3-carousel`），并在报告中说明理由。 |
+| **状态管理** | **Pinia**              | 官方提及。主要用于管理**非核心的扩展功能**（如购物车、用户登录）。 |
+| **服务器**   | **Nuxt Server Routes** | **强制要求**。使用 `/server/api` 目录。                      |
+| **数据库**   | **JSON文件作为DB**     | **强制要求**。在 `/server/api` 目录下创建 `.ts` 文件返回JSON，模拟从DB获取数据。 |
+| **部署平台** | **GitHub Pages**       | 官方推荐，通过 GitHub Actions 自动部署。                     |
+
+---
+
+## 🚀 项目设置与启动 (Setup & Launch)
+
+1. **克隆仓库**: https://github.com/GuojialeGeographer/Hypermedia
+
+2. **安装依赖**: `npm install`
+
+3. **添加Tailwind CSS**: `npx nuxi module add tailwindcss`
+
+4. **启动开发服务器**: `npm run dev`
+
+5. **配置 `nuxt.config.ts`**:
+
+   ```typescript
+   // nuxt.config.ts
+   export default defineNuxtConfig({
+     // 满足官方要求：明确指定渲染模式
+     ssr: false, // 采用SSG (Static Site Generation)，利于SEO和GitHub Pages部署
+   
+     modules: [
+       '@nuxtjs/tailwindcss',
+       '@pinia/nuxt', // 如需使用Pinia
+     ],
+     app: {
+       // 为GitHub Pages部署配置
+       baseURL: 'https://github.com/GuojialeGeographer/Hypermedia', // ‼️ 请替换为你的GitHub仓库名
+       buildAssetsDir: 'assets',
+     },
+   })
+   ```
+
+---
+
+## 📖 开发核心指南 (Development Guide)
+
+### 1. 目录结构规范
 
 ```
 .
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # GitHub Actions 部署配置文件
-├── assets/                 # 存放需要被构建工具处理的静态资源 (如 SCSS 文件)
+├── server/
+│   └── api/
+│       ├── teachers.ts     # 返回至少5位老师的JSON数据
+│       └── activities.ts   # 返回至少8个活动的JSON数据
 ├── components/
-│   ├── common/             # 全局通用组件 (AppButton.vue, AppCard.vue)
-│   ├── layout/             # 布局相关组件 (TheHeader.vue, TheFooter.vue)
-│   └── specific/           # 特定页面的组件 (ActivityCard.vue, TeacherProfile.vue)
-├── composables/            # 存放可复用的组合式函数 (如 useScreenSize.ts)
-├── layouts/                # 布局文件 (default.vue, clean.vue)
-├── pages/                  # 页面和路由
+│   ├── common/             # 自定义通用组件 (AppButton.vue, AppCard.vue)
+│   ├── layout/             # 布局组件 (TheHeader.vue, TheFooter.vue)
+│   └── ...                 # 其他特定组件
+├── pages/
 │   ├── activities/
-│   │   ├── index.vue       # /activities 页面
-│   │   └── [id].vue        # /activities/1 动态页面
-│   │   └── highlights.vue  # highlights 页面
+│   │   ├── index.vue       # “All Activities” 页面
+│   │   └── [id].vue        # 单个活动详情页
 │   ├── teachers/
-│   │   ├── index.vue
-│   │   └── [id].vue
+│   │   ├── index.vue       # “All Teachers” 页面
+│   │   └── [id].vue        # 单个老师详情页
 │   ├── about.vue
 │   ├── contact.vue
-│   └── highlights.vue
-├── public/                 # 存放无需构建直接复制的静态资源 (如 favicon.ico, images)
-├── server/
-│   └── api/                # 后端 API 路由
-│       ├── activities.ts   # 提供 /api/activities 数据
-│       └── teachers.ts     # 提供 /api/teachers 数据
-└── nuxt.config.ts          # Nuxt 配置文件
+│   └── highlights.vue      # 亮点页
+└── types/
+    └── index.ts            # 全局TypeScript类型定义 (Teacher, Activity)
 ```
 
-### 2. 组件策略：库与自定义
+### 2. 数据流：从DB设计到API实现
 
-**目标**: 展示对框架的深入理解，而不是成为组件库的"API调用工程师"。
+这是项目的**核心**，直接关系到“Content from DB”的评分项。
 
-- **使用场景**:
-  - **基础/通用组件**: 优先**自定义**。例如 `AppButton`, `AppCard`, `AppInput`。这些是展示你 CSS 和 Vue 技能的最佳场所。你可以参考 Figma 设计稿，使用 Tailwind CSS 来精确实现。
-  - **复杂交互组件**: 可以使用 **Headless UI** 等无样式组件库。例如，`Dropdown`, `Dialog (Modal)`, `Tabs`。这样你只需关注样式，而无需处理复杂的状态和可访问性逻辑。
-  - **布局**: 使用自定义的 `TheHeader.vue`, `TheFooter.vue` 等组件。
+1. **定义类型** (在 `types/index.ts` 中):
 
-### 3. 命名规范
+   ```typescript
+   export interface Teacher {
+     id: number; name: string; photo_url: string; short_bio: string;
+   }
+   export interface Activity {
+     id: number; name:string; image_url: string; description: string; teacher_ids: number[];
+   }
+   ```
 
-- **组件文件**: **PascalCase** (大驼峰命名法)。
-  - `components/common/AppButton.vue`
-  - `components/specific/ActivityCard.vue`
-- **页面文件**: **kebab-case** (短横线命名法)。
-  - `pages/activity-list.vue` (如果不是 `index.vue`)
-- **动态路由**: **方括号**。
-  - `pages/activities/[id].vue`
-- **Composables (组合式函数)**: **camelCase** (小驼峰命名法)，并以 `use` 开头。
-  - `composables/useScreenSize.ts`
-- **API 路由**: **kebab-case**。
-  - `server/api/activity-types.ts`
+2. **创建API**: 在 `server/api/` 目录下创建文件返回JSON数据。
 
-### 4. 布局与响应式设计 (Layout & Responsiveness)
+   ```typescript
+   // server/api/activities.ts
+   import type { Activity } from '~/types';
+   export default defineEventHandler((): Activity[] => [
+     { id: 1, name: 'Vinyasa Flow', ..., teacher_ids: [11021383] },
+     // ... 更多活动数据
+   ]);
+   ```
 
-**策略**: **移动端优先 (Mobile-First)**。
+3. **前端获取**: 在页面组件中使用`useFetch`或`useAsyncData`获取数据。
 
-1.  **默认样式**: 首先为移动设备编写样式。
-2.  **媒体查询**: 使用 Tailwind CSS 的响应式前缀 (`md:`, `lg:`) 来添加适应更大屏幕的样式。
+### 3. 组件化策略：自定义优先
 
-**示例**: 实现教授提到的导航栏切换。
+-   **必须自定义**: `AppButton.vue`, `TeacherCard.vue`, `ActivityCard.vue`。这些组件是展示你代码能力和满足“Components Structure and Reusability”评分项的关键。
+-   **Props & Emits**: 组件设计应清晰。在技术报告中需要描述关键组件的 `props` 和 `emits`。
 
-```vue
-<!-- components/layout/TheHeader.vue -->
-<template>
-  <header>
-    <!-- 移动端汉堡菜单按钮，仅在小屏幕显示 -->
-    <div class="md:hidden">
-      <button @click="toggleMenu">Burger Icon</button>
-    </div>
-    
-    <!-- 桌面端完整导航，仅在中等及以上屏幕显示 -->
-    <nav class="hidden md:flex">
-      <!-- Nav Links -->
-    </nav>
-  </header>
-</template>
-```
+### 4. SEO、可访问性与响应式设计
 
-### 5. 数据获取：杜绝硬编码
+这三项是**明确的评分点**，必须在开发中全程贯穿。
 
-**所有**动态内容（活动、老师、联系信息等）都必须通过 API 获取。
-
-**实现方式**: 使用 Nuxt 3 内置的 `server/` 目录来模拟后端。
-
-1.  **创建 API Endpoint**:
-    在 `server/api/activities.ts` 中:
-    ```typescript
-    // server/api/activities.ts
-    export default defineEventHandler((event) => {
-      // 在真实项目中，这里会连接数据库
-      // 在本项目中，可以返回一个静态的 JSON 数组
-      return [
-        { id: 1, name: '晨间流瑜伽', teacherId: 1, description: '...' },
-        { id: 2, name: '阴瑜伽放松', teacherId: 2, description: '...' },
-      ];
-    });
-    ```
-
-2.  **在页面中获取数据**:
-    在 `pages/activities/index.vue` 中:
-    ```vue
-    <script setup lang="ts">
-    const { data: activities, pending, error } = await useFetch('/api/activities');
-    </script>
-    
-    <template>
-      <div v-if="pending">Loading...</div>
-      <div v-else-if="error">Error loading activities.</div>
-      <ul v-else>
-        <li v-for="activity in activities" :key="activity.id">
-          {{ activity.name }}
-        </li>
-      </ul>
-    </template>
-    ```
-
-### 6. 状态管理
-
-当需要在多个页面或组件间共享状态时（例如，用户信息、购物车等），使用 **Pinia**。
-
-1.  创建 store: `stores/mainStore.ts`
-2.  在组件中使用: `const store = useMainStore();`
-
-### 7. SEO 与可访问性 (Accessibility)
-
-- **SEO**: 使用 Nuxt 的 `useHead` 组合式函数为每个页面设置独立的 `<title>` 和 `<meta description>`。
-  ```vue
-  <script setup>
-  useHead({
-    title: '关于我们 - 瑜伽中心',
-    meta: [
-      { name: 'description', content: '了解我们瑜伽中心的历史和理念。' }
-    ]
-  })
-  </script>
-  ```
-- **可访问性**:
-  - 确保所有图片都有 `alt` 属性。
-  - 确保按钮和链接有清晰的文本。
-  - 使用语义化的 HTML 标签 (`<nav>`, `<main>`, `<article>`, `<footer>`)。
-
-## 🚀 部署指南 (GitHub Pages)
-
-我们将使用 GitHub Actions 实现 CI/CD，每次推送到 `main` 分支时自动部署。
-
-1.  **配置 `nuxt.config.ts`**:
-    为了部署到 GitHub Pages 的子目录，需要进行如下配置。
-    ```typescript
-    // nuxt.config.ts
-    export default defineNuxtConfig({
-      // 必须设为 false 以生成静态文件
-      ssr: false,
-      app: {
-        // 'your-repo-name' 替换为你的 GitHub 仓库名
-        baseURL: '/your-repo-name/', 
-        buildAssetsDir: 'assets',
-      },
-      // 其他配置...
-    })
-    ```
-
-2.  **创建 GitHub Actions Workflow**:
-    在项目根目录创建 `.github/workflows/deploy.yml` 文件，并粘贴以下内容：
-    ```yaml
-    # .github/workflows/deploy.yml
-    name: Deploy to GitHub Pages
-
-    on:
-      push:
-        branches:
-          - main # 或者你的主分支名
-
-    jobs:
-      deploy:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v3
-
-          - name: Setup Node.js
-            uses: actions/setup-node@v3
-            with:
-              node-version: '18' # 建议使用 LTS 版本
-
-          - name: Install Dependencies
-            run: npm install
-
-          - name: Build Static Site
-            run: npm run generate
-
-          - name: Deploy to GitHub Pages
-            uses: peaceiris/actions-gh-pages@v3
-            with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              publish_dir: ./.output/public
-    ```
-
-3.  **在 GitHub 仓库设置中**:
-    - 前往 `Settings` > `Pages`。
-    - 在 `Build and deployment` 下的 `Source` 选择 `GitHub Actions`。
-
-现在，每当你推送到 `main` 分支，网站就会自动构建并部署。
-
-## 📋 最终交付物清单
-
-- [ ] **部署链接**: 最终的 GitHub Pages 链接 https://github.com/GuojialeGeographer/Hypermedia
-- [ ] **GitHub 仓库**: 确保已添加所有教授和助教为协作者。
-- [ ] **技术报告**: 按照要求撰写的 `.pdf` 文档，可以放在仓库根目录。
+-   **SEO**:
+    -   **`useHead`**: 为每个页面（包括动态页面）设置唯一的、描述性的 `<title>` 和 `<meta name="description">`。
+    -   **语义化HTML**: 正确使用 `<h1>`-`<h6>`, `<main>`, `<article>` 等。
+-   **可访问性 (Accessibility)**:
+    -   所有 `<img>` 标签必须有 `alt` 属性。
+    -   确保颜色对比度足够高。
+    -   所有交互元素（按钮、链接）都能通过键盘访问。
+-   **响应式设计 (Responsiveness)**:
+    -   采用移动端优先的策略。
+    -   使用Tailwind的响应式前缀 (`sm:`, `md:`, `lg:`) 来适配不同屏幕尺寸。
 
 ---
+
+## 🚢 部署流程 (Deployment)
+
+-   **平台**: GitHub Pages
+-   **方式**: 通过GitHub Actions自动部署
+-   **流程**: 每次推送代码到`main`分支时，Actions会自动执行`npm run generate`，并将生成的静态文件部署到`gh-pages`分支。

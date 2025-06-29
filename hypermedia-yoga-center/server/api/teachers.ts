@@ -3,10 +3,10 @@ import type { Teacher } from '~/types'
 const teachers: Teacher[] = [
   {
     id: 1,
-    name: 'Elara Mendoza',
-    image_url: '/images/team/teacher-1.png',
-    specialization: 'Vinyasa Flow',
-    short_bio: "With over 15 years of practice, Elara's classes are a sanctuary of calm and strength. She specializes in Vinyasa Flow, guiding students to synchronize breath with movement in a dance of mindfulness.",
+    name: 'Ashley Lorenzo',
+    image_url: '/images/team/ashley-lorenzo.png',
+    specialization: 'Gentle Flow Yoga',
+    short_bio: "Ashley Lorenzo is an experienced yoga instructor who started practicing yoga in 2009. She holds a 500-hour Yoga Alliance certification and specializes in Hatha Yoga, Vinyasa Yoga, and meditation techniques.",
   },
   {
     id: 2,

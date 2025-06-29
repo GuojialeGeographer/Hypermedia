@@ -1,139 +1,144 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white min-h-screen">
     <LayoutTheHeader />
     
-    <!-- Breadcrumb Navigation -->
-    <div class="max-w-6xl mx-auto px-6 pt-6">
-      <nav class="flex items-center text-sm space-x-2">
-        <NuxtLink to="/" class="text-[#2d5a27] font-medium hover:underline">Home</NuxtLink>
-        <span class="text-[#4b5563]">/</span>
-        <NuxtLink to="/team" class="text-[#2d5a27] font-medium hover:underline">Team</NuxtLink>
-        <span class="text-[#4b5563]">/</span>
-        <span class="text-[#111827] font-medium">{{ teacher?.name || 'Teacher' }}</span>
-      </nav>
+    <!-- Navigation Bar -->
+    <div class="absolute left-[35px] top-[104px] text-[25px] text-center z-10">
+      <div class="flex items-center space-x-2">
+        <NuxtLink to="/" class="font-medium text-[#4e7749] hover:underline">Home</NuxtLink>
+        <span class="font-normal text-black">/</span>
+        <NuxtLink to="/team" class="font-medium text-[#4e7749] hover:underline">Team</NuxtLink>
+        <span class="font-normal text-black">/</span>
+        <span class="font-medium text-black">{{ teacher?.name }}</span>
+      </div>
     </div>
 
-    <!-- Teacher Profile Card -->
-    <div v-if="teacher" class="max-w-4xl mx-auto px-6 py-12">
-      <div class="bg-white rounded-2xl shadow-lg border border-[#e5e7eb] p-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Teacher Image -->
-          <div class="lg:col-span-1">
-            <div class="aspect-square bg-cover bg-center rounded-xl" 
-                 :style="`background-image: url('${teacher.image_url}')`">
-            </div>
-          </div>
+    <!-- Main Content -->
+    <div class="max-w-[1920px] mx-auto px-4 pt-32">
+      <!-- Teacher Name Title -->
+      <div class="text-center mb-16">
+        <h1 class="text-[48px] font-bold text-black leading-[20px]">{{ teacher?.name }}</h1>
+      </div>
 
-          <!-- Teacher Info -->
-          <div class="lg:col-span-2 space-y-6">
-            <!-- Header -->
-            <div>
-              <h1 class="text-3xl font-bold text-[#111827] mb-2">{{ teacher.name }}</h1>
-              <p class="text-lg text-[#2d5a27] font-semibold">{{ teacher.specialization }}</p>
-            </div>
+      <!-- Teacher Profile Section -->
+      <div class="flex gap-16 max-w-[1800px] mx-auto mb-32">
+        <!-- Left Side - Teacher Image -->
+        <div class="w-[500px] h-[750px] flex-shrink-0">
+          <img 
+            :src="teacher?.id === 1 ? '/images/team/ashley-lorenzo-large.png' : teacher?.image_url" 
+            :alt="teacher?.name"
+            class="w-full h-full object-cover bg-center"
+          />
+        </div>
 
-            <!-- Bio -->
+        <!-- Right Side - Teacher Information -->
+        <div class="flex-1 pt-8">
+          <div class="text-[24px] text-black leading-[40px] space-y-6">
             <div>
-              <h2 class="text-xl font-bold text-[#111827] mb-3">About</h2>
-              <p class="text-[#4b5563] leading-relaxed text-[15px]">
-                {{ teacher.short_bio }}
+              <p class="font-bold mb-2">ABOUT:</p>
+              <p class="mb-4">
+                {{ teacher?.name }} is an experienced yoga instructor who started practicing yoga in 2009. In 2012, she obtained her yoga teacher certification in the United States and has since deepened her expertise through studies in India and Southeast Asia. She holds a 500-hour Yoga Alliance certification and specializes in Hatha Yoga, Vinyasa Yoga, and meditation techniques.
+              </p>
+              <p class="mb-6">
+                Her teaching integrates yoga postures, meditation, and breathwork, guiding students to achieve balance in body, mind, and spirit. She is currently a full-time instructor at Georgia Yoga Academy and excels in teaching Gentle Flow Yoga, meditation-based yoga, and personalized private sessions.
               </p>
             </div>
 
-            <!-- Specialization Details -->
             <div>
-              <h2 class="text-xl font-bold text-[#111827] mb-3">Specialization</h2>
-              <p class="text-[#4b5563] text-[15px]">
-                {{ teacher.specialization }} - {{ getSpecializationDescription(teacher.specialization) }}
+              <p class="font-bold mb-2">Teaching Style:</p>
+              <p class="mb-6">
+                {{ teacher?.name }} emphasizes proper alignment and breath control, encouraging students to explore their potential at a comfortable pace. Her classes are warm and therapeutic, making them ideal for beginners and those seeking mental and physical harmony. She advocates that yoga is not just an exercise but a lifestyle.
               </p>
             </div>
 
-            <!-- Action Button -->
-            <div class="pt-4">
-              <button class="bg-[#2d5a27] text-white px-6 py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors">
-                Book a Class
-              </button>
+            <div>
+              <p class="font-bold mb-2">Yoga Philosophy:</p>
+              <p class="mb-6">
+                Yoga has provided me with a sanctuary of peace amid a busy life. It is not just a physical practice but also a journey of inner healing and awareness. I aim to help my students incorporate yoga into their daily lives, making each practice a moment of self-discovery and rejuvenation.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold">Course: </p>
+              <p class="leading-[40px]">{{ teacher?.specialization }}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Other Teachers Section -->
-    <div v-if="teacher" class="max-w-6xl mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-bold text-[#111827] mb-8 text-center">Other Teachers</h2>
-      
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        <NuxtLink 
-          v-for="otherTeacher in otherTeachers" 
-          :key="otherTeacher.id"
-          :to="`/teachers/${otherTeacher.id}`"
-          class="group text-center"
-        >
-          <div class="aspect-square bg-cover bg-center rounded-lg shadow-md transition-transform group-hover:scale-105 mb-3" 
-               :style="`background-image: url('${otherTeacher.image_url}')`">
+      <!-- Other Teachers Section -->
+      <div class="mb-20">
+        <h2 class="text-[40px] font-bold text-black text-center mb-16 leading-[20px]">Other teachers</h2>
+        
+        <!-- Background gray area -->
+        <div class="bg-[#d9d9d9] opacity-40 h-[451px] relative mb-8">
+          <!-- Teacher images positioned absolutely within the gray area -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="flex gap-8 items-center">
+              <div 
+                v-for="otherTeacher in otherTeachers" 
+                :key="otherTeacher.id"
+                class="cursor-pointer hover:scale-105 transition-transform"
+                @click="$router.push(`/teachers/${otherTeacher.id}`)"
+              >
+                <img 
+                  :src="otherTeacher.image_url" 
+                  :alt="otherTeacher.name"
+                  class="w-[200px] h-[269px] object-cover"
+                />
+              </div>
+            </div>
           </div>
-          <h3 class="font-semibold text-[#111827] text-sm mb-1">{{ otherTeacher.name }}</h3>
-          <p class="text-[#4b5563] text-xs">{{ otherTeacher.specialization }}</p>
-        </NuxtLink>
-      </div>
-    </div>
+                 </div>
+       </div>
+     </div>
+     
+     <LayoutTheFooter />
+   </div>
+ </template>
 
-    <!-- Teacher Not Found -->
-    <div v-else class="max-w-6xl mx-auto px-6 py-16 text-center">
-      <h1 class="text-2xl font-bold text-[#111827] mb-4">Teacher Not Found</h1>
-      <p class="text-[#4b5563] text-[15px] mb-8">Sorry, the teacher you're looking for doesn't exist.</p>
-      <NuxtLink to="/team" 
-                class="inline-block bg-[#2d5a27] text-white px-6 py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors">
-        Back to Team
-      </NuxtLink>
-    </div>
-
-    <LayoutTheFooter />
-  </div>
-</template>
-
-<script setup lang="ts">
-import type { Teacher } from '~/types'
-
+<script setup>
+// Get the teacher ID from the route
 const route = useRoute()
-const teacherId = route.params.id as string
+const teacherId = parseInt(route.params.id)
 
-// Fetch specific teacher
-const { data: teacher } = await useFetch<Teacher>(`/api/teachers/${teacherId}`)
+// Fetch all teachers data
+const { data: teachers } = await $fetch('/api/teachers')
 
-// Fetch all teachers for "Other Teachers" section
-const { data: allTeachers } = await useFetch<Teacher[]>('/api/teachers')
+// Find the current teacher
+const teacher = teachers.find(t => t.id === teacherId)
 
-// Filter out current teacher from the list
-const otherTeachers = computed(() => {
-  if (!allTeachers.value || !teacher.value) return []
-  return allTeachers.value.filter(t => t.id !== teacher.value?.id)
-})
+// Get other teachers (excluding current one)
+const otherTeachers = teachers.filter(t => t.id !== teacherId)
 
-// Get specialization description
-const getSpecializationDescription = (specialization: string) => {
-  const descriptions: Record<string, string> = {
-    'Vinyasa Flow': 'Dynamic sequences linking breath with movement',
-    'Ashtanga Yoga': 'Traditional, disciplined practice building strength and flexibility',
-    'Restorative Yoga': 'Gentle, healing practice focused on relaxation and restoration',
-    'Zen Meditation': 'Mindful practice combining meditation with gentle movement',
-    'Power Yoga': 'Energetic, strength-building sequences for fitness and confidence',
-    'Hatha Yoga': 'Traditional approach focusing on alignment and therapeutic benefits'
-  }
-  return descriptions[specialization] || 'Specialized yoga instruction'
+// Handle case where teacher is not found
+if (!teacher) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Teacher not found'
+  })
 }
 
+// Set page meta
 useHead({
-  title: `${teacher.value?.name || 'Teacher'} - Yoga Studio`,
+  title: `${teacher.name} - Yoga Instructor | Yoga Studio`,
   meta: [
-    { name: 'description', content: teacher.value?.short_bio || 'Meet our experienced yoga instructor.' }
+    {
+      name: 'description',
+      content: `Learn about ${teacher.name}, an experienced yoga instructor specializing in ${teacher.specialization}.`
+    }
   ]
 })
 </script>
 
 <style scoped>
-.prose {
-  max-width: none;
+/* Use Inter font family */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ensure proper text rendering */
+p {
+  margin-bottom: 0;
 }
 </style> 

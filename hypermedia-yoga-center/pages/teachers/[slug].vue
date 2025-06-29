@@ -25,7 +25,7 @@
         <!-- Left Side - Teacher Image -->
         <div class="w-[500px] h-[750px] flex-shrink-0">
           <img 
-            :src="teacher?.name === 'Ashley Lorenzo' ? '/images/team/ashley-lorenzo-large.png' : teacher?.image_url" 
+            :src="teacher?.slug === 'ashley-lorenzo' ? '/images/team/ashley-lorenzo-large.png' : teacher?.image_url" 
             :alt="teacher?.name"
             class="w-full h-full object-cover bg-center"
           />
@@ -79,7 +79,7 @@
                 v-for="otherTeacher in otherTeachers" 
                 :key="otherTeacher.id"
                 class="cursor-pointer hover:scale-105 transition-transform"
-                @click="$router.push(`/Hypermedia/teachers/${encodeURIComponent(otherTeacher.name)}`)"
+                @click="$router.push(`/Hypermedia/teachers/${otherTeacher.slug}`)"
               >
                 <img 
                   :src="otherTeacher.image_url" 
@@ -92,24 +92,24 @@
         </div>
       </div>
     </div>
-     
+    
     <LayoutTheFooter />
   </div>
 </template>
 
 <script setup>
-// Get the teacher name from the route
+// Get the teacher slug from the route
 const route = useRoute()
-const teacherName = decodeURIComponent(String(route.params.id))
+const teacherSlug = String(route.params.slug)
 
 // Fetch all teachers data
 const { data: teachers } = await $fetch('/api/teachers')
 
-// Find the current teacher by name
-const teacher = teachers.find(t => t.name === teacherName)
+// Find the current teacher by slug
+const teacher = teachers.find(t => t.slug === teacherSlug)
 
 // Get other teachers (excluding current one)
-const otherTeachers = teachers.filter(t => t.name !== teacherName)
+const otherTeachers = teachers.filter(t => t.slug !== teacherSlug)
 
 // Handle case where teacher is not found
 if (!teacher) {

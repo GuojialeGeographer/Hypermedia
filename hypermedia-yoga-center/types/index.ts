@@ -1,6 +1,7 @@
 export interface Teacher {
   id: number;
   name: string;
+  slug: string;
   photo_url?: string;
   image_url: string;
   specialization: string;

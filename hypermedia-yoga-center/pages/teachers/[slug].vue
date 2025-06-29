@@ -71,21 +71,29 @@
         <h2 class="text-[40px] font-bold text-black text-center mb-16 leading-[20px]">Other teachers</h2>
         
         <!-- Background gray area -->
-        <div class="bg-[#d9d9d9] opacity-40 h-[451px] relative mb-8">
+        <div class="bg-[#d9d9d9] opacity-40 h-[520px] relative mb-8">
           <!-- Teacher images positioned absolutely within the gray area -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="flex gap-8 items-center">
               <div 
                 v-for="otherTeacher in otherTeachers" 
                 :key="otherTeacher.id"
-                class="cursor-pointer hover:scale-105 transition-transform"
-                @click="$router.push(`/Hypermedia/teachers/${otherTeacher.slug}`)"
+                class="text-center"
               >
-                <img 
-                  :src="otherTeacher.image_url" 
-                  :alt="otherTeacher.name"
-                  class="w-[200px] h-[269px] object-cover"
-                />
+                <div class="cursor-pointer hover:scale-105 transition-transform mb-3">
+                  <img 
+                    :src="otherTeacher.image_url" 
+                    :alt="otherTeacher.name"
+                    class="w-[200px] h-[269px] object-cover"
+                    @click="$router.push(`/Hypermedia/teachers/${otherTeacher.slug}`)"
+                  />
+                </div>
+                <h3 
+                  class="text-lg font-semibold text-black cursor-pointer hover:text-[#2d5a27] transition-colors"
+                  @click="$router.push(`/Hypermedia/teachers/${otherTeacher.slug}`)"
+                >
+                  {{ otherTeacher.name }}
+                </h3>
               </div>
             </div>
           </div>

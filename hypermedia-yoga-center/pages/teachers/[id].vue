@@ -5,9 +5,9 @@
     <!-- Navigation Bar -->
     <div class="absolute left-[35px] top-[104px] text-[25px] text-center z-10">
       <div class="flex items-center space-x-2">
-        <NuxtLink to="/" class="font-medium text-[#4e7749] hover:underline">Home</NuxtLink>
+        <NuxtLink to="/Hypermedia/" class="font-medium text-[#4e7749] hover:underline">Home</NuxtLink>
         <span class="font-normal text-black">/</span>
-        <NuxtLink to="/team" class="font-medium text-[#4e7749] hover:underline">Team</NuxtLink>
+        <NuxtLink to="/Hypermedia/team" class="font-medium text-[#4e7749] hover:underline">Team</NuxtLink>
         <span class="font-normal text-black">/</span>
         <span class="font-medium text-black">{{ teacher?.name }}</span>
       </div>
@@ -79,7 +79,7 @@
                 v-for="otherTeacher in otherTeachers" 
                 :key="otherTeacher.id"
                 class="cursor-pointer hover:scale-105 transition-transform"
-                @click="$router.push(`/teachers/${encodeURIComponent(otherTeacher.name)}`)"
+                @click="$router.push(`/Hypermedia/teachers/${encodeURIComponent(otherTeacher.name)}`)"
               >
                 <img 
                   :src="otherTeacher.image_url" 

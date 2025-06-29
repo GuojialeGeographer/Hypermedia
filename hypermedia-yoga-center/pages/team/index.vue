@@ -5,7 +5,7 @@
     <!-- Breadcrumb Navigation -->
     <div class="max-w-6xl mx-auto px-6 pt-6">
       <nav class="flex items-center text-sm space-x-2">
-        <NuxtLink to="/" class="text-[#2d5a27] font-medium hover:underline">Home</NuxtLink>
+        <NuxtLink to="/Hypermedia/" class="text-[#2d5a27] font-medium hover:underline">Home</NuxtLink>
         <span class="text-[#4b5563]">/</span>
         <span class="text-[#111827] font-medium">Team</span>
       </nav>
@@ -22,7 +22,7 @@
         <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
           Join us to cultivate a healthy body and a free balanced mind.
         </h1>
-        <NuxtLink to="/teachers/Ashley%20Lorenzo" class="inline-block bg-[#2d5a27] text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-[#25492a] transition-colors">
+        <NuxtLink to="/Hypermedia/teachers/Ashley%20Lorenzo" class="inline-block bg-[#2d5a27] text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-[#25492a] transition-colors">
           READ MORE
         </NuxtLink>
       </div>
@@ -37,7 +37,7 @@
         <NuxtLink 
           v-for="teacher in teachers" 
           :key="teacher.id" 
-          :to="`/teachers/${encodeURIComponent(teacher.name)}`"
+          :to="`/Hypermedia/teachers/${encodeURIComponent(teacher.name)}`"
           class="group cursor-pointer"
         >
           <div class="aspect-square bg-cover bg-center rounded-lg shadow-md transition-transform group-hover:scale-105" 

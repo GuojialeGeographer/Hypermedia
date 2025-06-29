@@ -75,12 +75,12 @@
           <!-- Teacher images positioned absolutely within the gray area -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="flex gap-8 items-center">
-                             <div 
-                 v-for="otherTeacher in otherTeachers" 
-                 :key="otherTeacher.id"
-                 class="cursor-pointer hover:scale-105 transition-transform"
-                 @click="$router.push(`/teachers/${encodeURIComponent(otherTeacher.name)}`)"
-               >
+              <div 
+                v-for="otherTeacher in otherTeachers" 
+                :key="otherTeacher.id"
+                class="cursor-pointer hover:scale-105 transition-transform"
+                @click="$router.push(`/teachers/${encodeURIComponent(otherTeacher.name)}`)"
+              >
                 <img 
                   :src="otherTeacher.image_url" 
                   :alt="otherTeacher.name"
@@ -89,18 +89,18 @@
               </div>
             </div>
           </div>
-                 </div>
-       </div>
-     </div>
+        </div>
+      </div>
+    </div>
      
-     <LayoutTheFooter />
-   </div>
- </template>
+    <LayoutTheFooter />
+  </div>
+</template>
 
 <script setup>
 // Get the teacher name from the route
 const route = useRoute()
-const teacherName = decodeURIComponent(route.params.id)
+const teacherName = decodeURIComponent(String(route.params.id))
 
 // Fetch all teachers data
 const { data: teachers } = await $fetch('/api/teachers')

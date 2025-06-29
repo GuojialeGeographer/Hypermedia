@@ -2,7 +2,7 @@
 
 本项目是为米兰理工大学 "HYP 2024-2025 Hypermedia Applications" 课程开发的瑜伽中心网站。它严格遵循课程官方发布的 `Design and Development Project` 指导文件，旨在构建一个满足所有评估标准的功能性、数据驱动、响应式的Web应用。
 
-**该文档是项目的“单一事实来源 (Single Source of Truth)”，所有开发工作必须以此为准。**
+**该文档是项目的"单一事实来源 (Single Source of Truth)"，所有开发工作必须以此为准。**
 
 ## 目录
 
@@ -29,36 +29,36 @@
 
 ### 2. 页面与路由 (Pages & Routes)
 
-- [ ] homepage：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-191&m=dev
-- [ ] home/shop：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-75&m=dev
-- [ ] home/shop/apparel：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-45&m=dev
-- [ ] home/shop/apparel/top：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-51&m=dev
-- [ ] home/shop/apparel/bottoms：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-47&m=dev
-- [ ] home/shop/apparel/jacket：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-49&m=dev
-- [ ] home/shop/apparel/new arrivals：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=140-184&m=dev
-- [ ] home/activities：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-388&m=dev
-- [ ] home/team：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=125-235&m=dev
-- [ ] home/classes：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=15-6&m=dev
-- [ ] home/about us：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=126-842&m=dev
-- [ ] home/contact us https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-97&m=dev
-- [ ] home/faq：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-959&m=dev
-- [ ] home/refund policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-719&m=dev
-- [ ] home/terms of service：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-788&m=dev
-- [ ] home/Private policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-883&m=dev
+- [x] homepage：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-191&m=dev
+- [x] home/shop：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=2-75&m=dev
+- [x] home/shop/apparel：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-45&m=dev
+- [x] home/shop/apparel/top：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-51&m=dev
+- [x] home/shop/apparel/bottoms：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-47&m=dev
+- [x] home/shop/apparel/jacket：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=142-49&m=dev
+- [x] home/shop/apparel/new arrivals：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=140-184&m=dev
+- [x] home/activities：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-388&m=dev
+- [x] home/team：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=125-235&m=dev
+- [x] home/classes：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=15-6&m=dev
+- [x] home/about us：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=126-842&m=dev
+- [x] home/contact us https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-97&m=dev
+- [x] home/faq：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-959&m=dev
+- [x] home/refund policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-719&m=dev
+- [x] home/terms of service：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-788&m=dev
+- [x] home/Private policy：https://www.figma.com/design/Y6lf8MMJ9pTjaD2adhAo9X/yoga?node-id=99-883&m=dev
 
 ### 3. 技术实现 (Technical Implementation)
 
-- [ ] **框架**: **必须**使用 Vue3 和 Nuxt3。
-- [ ] **渲染模式**: 在 `nuxt.config.ts` 中**必须明确指定** (我们选择 `ssr: false` 进行SSG)。
-- [ ] **服务器/数据库**: **必须**实现一个服务器（我们用Nuxt Server Routes），页面**必须**从该服务器获取数据（我们用JSON文件模拟DB）。
-- [ ] **组件**: **必须创建自定义组件**，不能过度依赖第三方库。展示组件的**结构和可复用性**。
+- [x] **框架**: **必须**使用 Vue3 和 Nuxt3。
+- [x] **渲染模式**: 在 `nuxt.config.ts` 中**必须明确指定** (我们选择 `ssr: false` 进行SSG)。
+- [x] **服务器/数据库**: **必须**实现一个服务器（我们用Nuxt Server Routes），页面**必须**从该服务器获取数据（我们用JSON文件模拟DB）。
+- [x] **组件**: **必须创建自定义组件**，不能过度依赖第三方库。展示组件的**结构和可复用性**。
 - [ ] **代码注释**: 代码应包含有意义的注释。
 
 ### 4. 网站特性 (Website Features) 
 
-- [ ] **SEO优化**: 必须实现SEO最佳实践（如独特的`title`/`meta`标签、语义化HTML等）。
-- [ ] **响应式设计 (Responsiveness)**: 界面必须能适应移动设备。
-- [ ] **可访问性 (Accessibility)**: 必须符合无障碍准则（如`alt`文本、高对比度等）。
+- [x] **SEO优化**: 必须实现SEO最佳实践（如独特的`title`/`meta`标签、语义化HTML等）。
+- [x] **响应式设计 (Responsiveness)**: 界面必须能适应移动设备。
+- [x] **可访问性 (Accessibility)**: 必须符合无障碍准则（如`alt`文本、高对比度等）。
 
 ---
 
@@ -124,10 +124,10 @@
 │   └── ...                 # 其他特定组件
 ├── pages/
 │   ├── activities/
-│   │   ├── index.vue       # “All Activities” 页面
+│   │   ├── index.vue       # "All Activities" 页面
 │   │   └── [id].vue        # 单个活动详情页
 │   ├── teachers/
-│   │   ├── index.vue       # “All Teachers” 页面
+│   │   ├── index.vue       # "All Teachers" 页面
 │   │   └── [id].vue        # 单个老师详情页
 │   ├── about.vue
 │   ├── contact.vue
@@ -138,7 +138,7 @@
 
 ### 2. 数据流：从DB设计到API实现
 
-这是项目的**核心**，直接关系到“Content from DB”的评分项。
+这是项目的**核心**，直接关系到"Content from DB"的评分项。
 
 1. **定义类型** (在 `types/index.ts` 中):
 
@@ -166,28 +166,5 @@
 
 ### 3. 组件化策略：自定义优先
 
--   **必须自定义**: `AppButton.vue`, `TeacherCard.vue`, `ActivityCard.vue`。这些组件是展示你代码能力和满足“Components Structure and Reusability”评分项的关键。
--   **Props & Emits**: 组件设计应清晰。在技术报告中需要描述关键组件的 `props` 和 `emits`。
-
-### 4. SEO、可访问性与响应式设计
-
-这三项是**明确的评分点**，必须在开发中全程贯穿。
-
--   **SEO**:
-    -   **`useHead`**: 为每个页面（包括动态页面）设置唯一的、描述性的 `<title>` 和 `<meta name="description">`。
-    -   **语义化HTML**: 正确使用 `<h1>`-`<h6>`, `<main>`, `<article>` 等。
--   **可访问性 (Accessibility)**:
-    -   所有 `<img>` 标签必须有 `alt` 属性。
-    -   确保颜色对比度足够高。
-    -   所有交互元素（按钮、链接）都能通过键盘访问。
--   **响应式设计 (Responsiveness)**:
-    -   采用移动端优先的策略。
-    -   使用Tailwind的响应式前缀 (`sm:`, `md:`, `lg:`) 来适配不同屏幕尺寸。
-
----
-
-## 🚢 部署流程 (Deployment)
-
--   **平台**: GitHub Pages
--   **方式**: 通过GitHub Actions自动部署
--   **流程**: 每次推送代码到`main`分支时，Actions会自动执行`npm run generate`，并将生成的静态文件部署到`gh-pages`分支。
+-   **必须自定义**: `AppButton.vue`, `TeacherCard.vue`, `ActivityCard.vue`。这些组件是展示你代码能力和满足"Components Structure and Reusability"评分项的关键。
+-   **Props & Emits**: 组件设计应清晰。在技术报告中需要描述关键组件的 `props`

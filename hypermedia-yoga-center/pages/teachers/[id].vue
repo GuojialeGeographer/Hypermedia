@@ -25,7 +25,7 @@
         <!-- Left Side - Teacher Image -->
         <div class="w-[500px] h-[750px] flex-shrink-0">
           <img 
-            :src="teacher?.id === 1 ? '/images/team/ashley-lorenzo-large.png' : teacher?.image_url" 
+            :src="teacher?.name === 'Ashley Lorenzo' ? '/images/team/ashley-lorenzo-large.png' : teacher?.image_url" 
             :alt="teacher?.name"
             class="w-full h-full object-cover bg-center"
           />
@@ -75,12 +75,12 @@
           <!-- Teacher images positioned absolutely within the gray area -->
           <div class="absolute inset-0 flex items-center justify-center">
             <div class="flex gap-8 items-center">
-              <div 
-                v-for="otherTeacher in otherTeachers" 
-                :key="otherTeacher.id"
-                class="cursor-pointer hover:scale-105 transition-transform"
-                @click="$router.push(`/teachers/${otherTeacher.id}`)"
-              >
+                             <div 
+                 v-for="otherTeacher in otherTeachers" 
+                 :key="otherTeacher.id"
+                 class="cursor-pointer hover:scale-105 transition-transform"
+                 @click="$router.push(`/teachers/${encodeURIComponent(otherTeacher.name)}`)"
+               >
                 <img 
                   :src="otherTeacher.image_url" 
                   :alt="otherTeacher.name"
@@ -98,18 +98,18 @@
  </template>
 
 <script setup>
-// Get the teacher ID from the route
+// Get the teacher name from the route
 const route = useRoute()
-const teacherId = parseInt(route.params.id)
+const teacherName = decodeURIComponent(route.params.id)
 
 // Fetch all teachers data
 const { data: teachers } = await $fetch('/api/teachers')
 
-// Find the current teacher
-const teacher = teachers.find(t => t.id === teacherId)
+// Find the current teacher by name
+const teacher = teachers.find(t => t.name === teacherName)
 
 // Get other teachers (excluding current one)
-const otherTeachers = teachers.filter(t => t.id !== teacherId)
+const otherTeachers = teachers.filter(t => t.name !== teacherName)
 
 // Handle case where teacher is not found
 if (!teacher) {

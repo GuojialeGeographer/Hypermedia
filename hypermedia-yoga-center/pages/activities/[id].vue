@@ -43,37 +43,37 @@
         <div class="space-y-6">
           <!-- Quick Info Card -->
           <div class="bg-[#f9fafb] rounded-xl p-6 border">
-            <h3 class="text-lg font-bold text-[#111827] mb-4 font-inter">Class Details</h3>
+            <h3 class="text-lg font-bold text-[#111827] mb-4 font-inter text-center">Class Details</h3>
             
             <div class="space-y-3">
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Instructor:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.instructor }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.instructor }}</span>
               </div>
               
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Duration:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.duration || '60 min' }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.duration || '60 min' }}</span>
               </div>
               
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Location:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.location || 'Main Studio' }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.location || 'Main Studio' }}</span>
               </div>
               
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Schedule:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.schedule || 'Weekly' }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.schedule || 'Weekly' }}</span>
               </div>
               
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Intensity:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.intensity || 'Moderate' }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.intensity || 'Moderate' }}</span>
               </div>
               
               <div class="flex justify-between">
                 <span class="text-[#4b5563] text-[15px] font-medium">Capacity:</span>
-                <span class="text-[#111827] text-[15px]">{{ activity.capacity || '15 people' }}</span>
+                <span class="text-[#111827] text-[15px] text-center">{{ activity.capacity || '15 people' }}</span>
               </div>
             </div>
           </div>
@@ -282,7 +282,7 @@ const activityData: Record<string, any> = {
     isFree: false,
     duration: '120 min',
     location: 'Meditation Room',
-    schedule: 'First Sunday of Month 4:00-6:00 PM',
+    schedule: 'First Sun of Mon 4:00-6:00 PM',
     intensity: 'Restorative',
     capacity: 'Max 10 people',
     suitableFor: 'Yoga members seeking deep relaxation',

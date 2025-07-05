@@ -1,1 +1,0 @@
-import{p as s}from"./pP9XMPqz.js";const a=s("/images/team/teacher-2.png"),e=s("/images/team/teacher-3.png"),m=s("/images/team/teacher-4.png"),p=s("/images/team/teacher-5.png");export{a as _,e as a,m as b,p as c};

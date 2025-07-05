@@ -1,0 +1,1 @@
+import{A as o}from"./FMERqdcO.js";import{e,q as r,o as t}from"./C_hH1mz1.js";import"./BjCXrBI-.js";import"./BHh3tQ-h.js";const _=e({__name:"signup",setup(p){return(m,n)=>(t(),r(o,{formType:"signup"}))}});export{_ as default};

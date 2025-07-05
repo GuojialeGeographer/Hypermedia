@@ -1,0 +1,1 @@
+import{A as o}from"./FMERqdcO.js";import{e,q as r,o as t}from"./C_hH1mz1.js";import"./BjCXrBI-.js";import"./BHh3tQ-h.js";const _=e({__name:"login",setup(m){return(n,p)=>(t(),r(o,{formType:"login"}))}});export{_ as default};

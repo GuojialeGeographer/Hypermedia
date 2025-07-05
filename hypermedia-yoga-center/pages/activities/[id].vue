@@ -79,10 +79,11 @@
           </div>
 
           <!-- Book Now Button -->
-          <button v-if="activity.isFree" 
-                  class="w-full bg-[#2d5a27] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors">
+          <NuxtLink v-if="activity.isFree" 
+                    to="/login"
+                    class="block w-full text-center bg-[#2d5a27] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors">
             Book Free Trial
-          </button>
+          </NuxtLink>
           <button v-else 
                   class="w-full bg-[#4b5563] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#374151] transition-colors">
             Member Booking

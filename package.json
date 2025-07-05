@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@pinia/nuxt": "^0.11.1",
+    "pinia": "^3.0.3",
+    "pinia-plugin-persistedstate": "^4.4.1"
+  }
+}

@@ -19,13 +19,13 @@
     <!-- 活动安排网格 -->
     <div class="max-w-[1920px] mx-auto px-6 pb-16">
       <!-- Monday -->
-      <div class="flex items-center justify-center mb-12 gap-6">
-        <div class="w-[1058px] h-[595px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-monday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-monday.png')"></div>
+        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-3 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-3 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/monday-mindfulness" class="hover:opacity-80 transition-opacity">
@@ -58,13 +58,13 @@
       </div>
 
       <!-- Tuesday -->
-      <div class="flex items-center justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] h-[584px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-tuesday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-tuesday.png')"></div>
+        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-0 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-0 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/tuesday-therapy" class="hover:opacity-80 transition-opacity">
@@ -97,13 +97,13 @@
       </div>
 
       <!-- Wednesday -->
-      <div class="flex items-center justify-center mb-12 gap-6">
-        <div class="w-[1058px] h-[585px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-wednesday.png')"></div>
-        <div class="bg-[#fafaf5] w-[802px] h-[585px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-wednesday.png')"></div>
+        <div class="bg-[#fafaf5] w-[802px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/wednesday-fusion" class="hover:opacity-80 transition-opacity">
@@ -136,13 +136,13 @@
       </div>
 
       <!-- Thursday -->
-      <div class="flex items-center justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1054px] h-[584px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-thursday.png')"></div>
-        <div class="bg-[#fafaf5] w-[786px] h-[587px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
+        <div class="w-[1054px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-thursday.png')"></div>
+        <div class="bg-[#fafaf5] w-[786px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/thursday-specialty" class="hover:opacity-80 transition-opacity">
@@ -175,13 +175,13 @@
       </div>
 
       <!-- Friday -->
-      <div class="flex items-center justify-center mb-12 gap-6">
-        <div class="w-[1065px] h-[589px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-friday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6">
+        <div class="w-[1065px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-friday.png')"></div>
+        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/friday-masterclass" class="hover:opacity-80 transition-opacity">
@@ -214,13 +214,13 @@
       </div>
 
       <!-- Saturday -->
-      <div class="flex items-center justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] h-[585px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-saturday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-saturday.png')"></div>
+        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/saturday-family" class="hover:opacity-80 transition-opacity">
@@ -252,13 +252,13 @@
       </div>
 
       <!-- Sunday -->
-      <div class="flex items-center justify-center mb-12 gap-6">
-        <div class="w-[1058px] h-[585px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-sunday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-sunday.png')"></div>
+        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Free Trial Badge -->
-          <div class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3">
+          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
             <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
-          </div>
+          </NuxtLink>
           
           <div class="mt-16">
             <NuxtLink to="/activities/sunday-vinyasa" class="hover:opacity-80 transition-opacity">
@@ -290,9 +290,9 @@
       </div>
 
       <!-- Members Exclusive -->
-      <div class="flex items-center justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] h-[585px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-special.png')"></div>
-        <div class="bg-[#f2f2fa] w-[800px] h-[600px] rounded-2xl p-8 relative overflow-hidden flex-shrink-0">
+      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
+        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-special.png')"></div>
+        <div class="bg-[#f2f2fa] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
           <!-- Members Badge -->
           <div class="absolute top-5 left-3 bg-[#4d4d99] rounded-[20px] px-5 py-2">
             <span class="text-white font-semibold text-[16px]">MEMBERS</span>

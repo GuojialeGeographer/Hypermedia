@@ -6,7 +6,11 @@ export default defineNuxtConfig({
   // 满足官方要求：明确指定渲染模式
   ssr: false, // 采用SSG (Static Site Generation)，利于SEO和GitHub Pages部署
 
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@nuxtjs/google-fonts'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@nuxtjs/google-fonts',
+  ],
 
   googleFonts: {
     families: {
@@ -18,7 +22,11 @@ export default defineNuxtConfig({
 
   app: {
     // 为GitHub Pages部署配置
-    baseURL: '/Hypermedia/', // 你的GitHub仓库名
+    baseURL: process.env.NODE_ENV === 'production' ? '/Hypermedia/' : '/', // 你的GitHub仓库名
     buildAssetsDir: 'assets',
+  },
+
+  tailwindcss: {
+    cssPath: '~/assets/css/tailwind.css',
   },
 })

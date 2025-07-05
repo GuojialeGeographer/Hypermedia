@@ -1,77 +1,153 @@
 <template>
-  <div>
+  <div class="min-h-screen bg-white">
     <LayoutTheHeader />
 
-    <main class="bg-white">
-      <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <!-- Breadcrumb -->
-        <div class="flex items-center space-x-2 text-sm text-gray-500">
-          <NuxtLink to="/shop" class="hover:underline">Shop</NuxtLink>
-          <span>/</span>
-          <span class="text-gray-900">Apparel</span>
-        </div>
+    <!-- Main Content -->
+    <div class="max-w-[1920px] mx-auto px-4 pt-20">
+      <!-- Breadcrumb -->
+      <div class="flex items-center space-x-2 text-[25px] pt-6 pb-8">
+        <NuxtLink to="/" class="text-[#4e7749] font-medium">Home</NuxtLink>
+        <span class="text-black">/</span>
+        <NuxtLink to="/shop" class="text-[#4e7749] font-medium">Shop</NuxtLink>
+        <span class="text-black">/</span>
+        <span class="text-black font-medium">Apparel</span>
+      </div>
 
-        <!-- Page Title -->
-        <div class="pt-8 text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Apparel
-          </h1>
-          <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-            Discover our collection of yoga wear, designed for comfort, performance, and style.
-          </p>
-        </div>
+      <!-- Page Title -->
+      <h1 class="text-[66px] font-bold text-black text-center mb-16">Apparel</h1>
 
-        <!-- Category Grid -->
-        <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <NuxtLink
-            v-for="category in categories"
-            :key="category.name"
-            :to="category.href"
-            class="group relative block"
-          >
-            <div class="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
-              <img :src="category.imageSrc" :alt="category.imageAlt" class="h-full w-full object-cover object-center" />
+      <!-- Main Layout -->
+      <div class="flex">
+        <!-- Left Sidebar - Filters -->
+        <div class="w-[655px] pr-8">
+          <!-- Filter Header -->
+          <h2 class="text-[36px] font-normal text-black mb-8">Filter:</h2>
+          
+          <!-- Divider -->
+          <div class="h-0.5 bg-[#cccccc] mb-8"></div>
+
+          <!-- Product Filter -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-[36px] font-normal text-black">Product</h3>
+              <button class="text-[36px] text-black rotate-180">︾</button>
             </div>
-            <h3 class="mt-4 text-xl font-semibold text-gray-900">{{ category.name }}</h3>
-            <p class="mt-1 text-base text-gray-500">{{ category.description }}</p>
-          </NuxtLink>
+            
+            <!-- Divider -->
+            <div class="h-0.5 bg-[#cccccc] mb-6"></div>
+
+            <!-- Filter Options -->
+            <div class="space-y-6">
+              <div>
+                <NuxtLink 
+                  to="/shop/apparel/top" 
+                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                >
+                  Top
+                </NuxtLink>
+              </div>
+              
+              <div>
+                <NuxtLink 
+                  to="/shop/apparel/bottoms" 
+                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                >
+                  Bottoms
+                </NuxtLink>
+              </div>
+              
+              <div>
+                <NuxtLink 
+                  to="/shop/apparel/jacket" 
+                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                >
+                  Jacket
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color Filter -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-[36px] font-normal text-black">Color</h3>
+              <button class="text-[36px] text-black rotate-180">︾</button>
+            </div>
+            <div class="h-0.5 bg-[#cccccc]"></div>
+          </div>
+
+          <!-- Size Filter -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-[36px] font-normal text-black">Size</h3>
+              <button class="text-[36px] text-black rotate-180">︾</button>
+            </div>
+            <div class="h-0.5 bg-[#cccccc]"></div>
+          </div>
+        </div>
+
+        <!-- Right Content - Products -->
+        <div class="flex-1">
+          <!-- Sort and Product Count -->
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-4">
+              <span class="text-[36px] font-bold text-[#666666]">Sort by:</span>
+              <select class="text-[36px] font-light text-black bg-transparent border-none outline-none">
+                <option>Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
+              <span class="text-[36px] text-black">︾</span>
+            </div>
+            <span class="text-[36px] font-bold text-[#666666]">{{ displayedProducts.length }} products</span>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="grid grid-cols-3 gap-x-8 gap-y-16">
+            <div v-for="product in displayedProducts" :key="product.id" class="group">
+              <!-- Product Image -->
+              <div class="relative mb-4 overflow-hidden bg-gray-100">
+                <img 
+                  :src="product.imageSrc" 
+                  :alt="product.imageAlt"
+                  class="w-full h-[497px] object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              
+              <!-- Product Info -->
+              <div class="text-center">
+                <h3 class="text-[16px] font-bold text-black mb-2 leading-normal">{{ product.name }}</h3>
+                <div class="flex items-center justify-center space-x-2 text-[16px] text-black leading-normal">
+                  <span class="font-normal">{{ product.color }}</span>
+                  <span class="font-normal">→</span>
+                  <span class="font-normal">{{ product.price }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <LayoutTheFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-useHead({
-  title: 'Shop Apparel - Yoga Studio',
-  meta: [
-    { name: 'description', content: 'Browse our apparel collections including tops, bottoms, and jackets.' }
-  ]
-})
+import { computed } from 'vue';
+import type { Product } from '~/types';
 
-const categories = [
-  {
-    name: 'Tops',
-    description: 'Performance bras and tees.',
-    href: '/shop/apparel/top',
-    imageSrc: '/images/products/image-15.png',
-    imageAlt: 'A woman wearing a yoga top.',
-  },
-  {
-    name: 'Bottoms',
-    description: 'Leggings and shorts for every flow.',
-    href: '/shop/apparel/bottoms',
-    imageSrc: '/images/products/image-38.png',
-    imageAlt: 'Close-up of a person wearing yoga leggings.',
-  },
-  {
-    name: 'Jackets',
-    description: 'Warm-ups and cool-downs.',
-    href: '/shop/apparel/jacket',
-    imageSrc: '/images/products/image-36.png',
-    imageAlt: 'A woman wearing a zip-up yoga jacket.',
-  },
-]
+const { data: products } = await useFetch<Product[]>('/api/products');
+
+const displayedProducts = computed(() => {
+  return products.value || [];
+});
+
+useHead({
+  title: 'Apparel - Yoga Studio Shop',
+  meta: [
+    { name: 'description', content: 'Shop our collection of yoga apparel.' }
+  ]
+});
 </script> 

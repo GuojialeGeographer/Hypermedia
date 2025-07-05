@@ -2,10 +2,11 @@ export interface Teacher {
   id: number;
   name: string;
   slug: string;
-  photo_url?: string;
-  image_url: string;
-  specialization: string;
-  short_bio: string;
+  image: string;
+  bio: string;
+  teachingStyle: string;
+  yogaPhilosophy: string;
+  courses: string[];
 }
 
 export interface Activity {

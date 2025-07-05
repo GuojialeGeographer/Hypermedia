@@ -1,90 +1,66 @@
 <template>
-  <div class="bg-white w-[1920px] mx-auto relative" style="height: 1860px;">
+  <div class="bg-white">
     <LayoutTheHeader />
-
-    <!-- Breadcrumb Navigation -->
-    <div class="absolute left-[35px] top-[104px]">
-      <nav class="flex items-center text-[25px] space-x-2 font-inter">
-        <NuxtLink to="/" class="text-[#4e7749] font-medium hover:underline">Home</NuxtLink>
-        <span class="text-black">/</span>
-        <span class="text-black font-medium">Team</span>
-      </nav>
-    </div>
 
     <!-- Hero Section -->
     <div 
-      class="absolute top-[154px] left-0 w-[1920px] h-[948px] bg-cover bg-center"
-      :style="{ backgroundImage: `url('/images/team/hero-background.png')` }"
+      class="relative w-full h-[948px] bg-cover bg-center"
+      style="background-image: url('/images/team/hero-background.png');"
     >
-      <div class="w-full h-full bg-black bg-opacity-30 flex flex-col items-center justify-center space-y-8">
-        <h1 class="text-[54px] font-bold text-white text-center leading-tight max-w-[1208px]">
+      <div class="w-full h-full bg-black bg-opacity-30 flex flex-col items-center justify-center text-center text-white p-4">
+        <h1 class="text-[54px] font-bold leading-tight max-w-4xl">
           Join us to cultivate a healthy body and a free, balanced mind.
         </h1>
         <NuxtLink 
-          to="/teachers/ashley-lorenzo" 
-          class="bg-[#2d5a27] text-white px-12 py-4 rounded-md text-[16.875px] font-medium hover:bg-opacity-90 transition-colors"
+          v-if="teachers && teachers.length > 0"
+          :to="`/teachers/${teachers[0].slug}`" 
+          class="mt-8 bg-[#2d5a27] text-white px-12 py-3 rounded-md text-lg font-medium hover:bg-opacity-90 transition-colors"
         >
           READ MORE
         </NuxtLink>
       </div>
     </div>
 
-    <!-- Team Members Section -->
-    <div class="absolute top-[1150px] left-[45px] w-full">
-      <h2 class="text-[54px] font-bold text-black mb-12">Our team</h2>
-      <div class="relative h-[400px]">
-        <div 
-          v-for="teacher in teachers" 
-          :key="teacher.slug" 
-          @click="navigateToTeacher(teacher.slug)"
-          class="group cursor-pointer text-center absolute"
-          :style="{ left: teacher.position.left + 'px' }"
-        >
-          <img 
-            :src="teacher.image_url" 
-            :alt="teacher.name" 
-            class="rounded-lg object-cover transition-transform duration-300 group-hover:scale-105" 
-            :style="{ width: teacher.position.width + 'px', height: '270px' }" 
-          />
-          <p class="mt-4 font-semibold text-lg">{{ teacher.name }}</p>
+    <!-- Breadcrumb and Team Section Wrapper -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Breadcrumb Navigation -->
+      <nav class="flex items-center text-sm font-medium mb-12">
+        <NuxtLink to="/" class="text-green-700 hover:text-green-800">Home</NuxtLink>
+        <span class="mx-2 text-gray-500">/</span>
+        <span class="text-gray-800">Team</span>
+      </nav>
+
+      <!-- Team Members Section -->
+      <div>
+        <h2 class="text-5xl font-bold text-gray-900 mb-12">Our team</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <NuxtLink 
+            v-for="teacher in teachers" 
+            :key="teacher.slug" 
+            :to="`/teachers/${teacher.slug}`"
+            class="group text-center"
+          >
+            <div class="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+              <img 
+                :src="teacher.image" 
+                :alt="teacher.name" 
+                class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105" 
+              />
+            </div>
+            <p class="mt-4 font-semibold text-base text-gray-800">{{ teacher.name }}</p>
+          </NuxtLink>
         </div>
       </div>
     </div>
 
-    <div class="absolute top-[1595px] w-full">
-      <LayoutTheFooter />
-    </div>
+    <LayoutTheFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import type { Teacher } from '~/types'
 
-interface Teacher {
-  slug: string;
-  name: string;
-  image_url: string;
-  position: {
-    left: number;
-    width: number;
-  }
-}
-
-const teachers = ref<Teacher[]>([
-  { slug: 'ashley-lorenzo', name: 'Ashley Lorenzo', image_url: '/images/team/teacher-1.png', position: { left: 39, width: 180 } },
-  { slug: 'liam-oconnell', name: 'Liam O\'Connell', image_url: '/images/team/teacher-2.png', position: { left: 303, width: 194 } },
-  { slug: 'seraphina-rossi', name: 'Seraphina Rossi', image_url: '/images/team/teacher-3.png', position: { left: 605, width: 230 } },
-  { slug: 'kenji-tanaka', name: 'Kenji Tanaka', image_url: '/images/team/teacher-4.png', position: { left: 936, width: 196 } },
-  { slug: 'isabella-costa', name: 'Isabella Costa', image_url: '/images/team/teacher-5.png', position: { left: 1227, width: 218 } },
-  { slug: 'sophia-chen', name: 'Sophia Chen', image_url: '/images/team/teacher-6.png', position: { left: 1543, width: 216 } },
-])
-
-const router = useRouter()
-
-const navigateToTeacher = (slug: string) => {
-  router.push(`/teachers/${slug}`)
-}
+const { data: teachers } = await useFetch<Teacher[]>('/api/teachers')
 
 useHead({
   title: 'Our Team - Yoga Studio',
@@ -98,4 +74,4 @@ useHead({
 .font-inter {
   font-family: 'Inter', sans-serif;
 }
-</style> 
+</style>

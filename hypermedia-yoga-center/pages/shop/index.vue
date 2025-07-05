@@ -4,7 +4,7 @@
 
     <main>
       <!-- Hero Section with Background Image -->
-      <section 
+      <section
         class="relative bg-cover bg-center bg-no-repeat py-32"
         :style="{ backgroundImage: `url('/images/team/hero-background.png')` }"
       >
@@ -22,12 +22,12 @@
             </p>
 
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-              <a
+              <NuxtLink
                 class="block w-full rounded border border-green-700 bg-green-700 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                href="#new-arrivals"
+                to="/shop/apparel"
               >
                 Shop The Collection
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -60,10 +60,18 @@
 
                   <p class="mt-2">
                     <span class="sr-only"> Regular Price </span>
-                    <span class="tracking-wider text-gray-900"> {{ product.price }} </span>
+                    <span class="tracking-wider text-gray-900"> €{{ product.price.toFixed(2) }} </span>
                   </p>
                 </div>
               </a>
+              <div class="mt-4">
+                <button
+                  @click="addToCart(product)"
+                  class="block w-full rounded bg-[#2d5a27] p-4 text-sm font-medium text-white transition hover:scale-105"
+                >
+                  Add to Cart
+                </button>
+              </div>
             </li>
           </ul>
         </div>
@@ -90,6 +98,23 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from '~/stores/cart';
+
+const cartStore = useCartStore();
+
+const addToCart = (product: any) => {
+  cartStore.addItem({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image_url,
+    quantity: 1,
+    description: product.name, // Using name as description for now
+  });
+  // Optionally, show a notification
+  alert(`${product.name} has been added to the cart!`);
+};
+
 useHead({
   title: 'Shop - Yoga Studio',
   meta: [
@@ -101,25 +126,25 @@ const newArrivals = ref([
   {
     id: 1,
     name: 'Cross Back Performance Bra',
-    price: '€45.00',
+    price: 45.00,
     image_url: '/images/products/image-26.png',
   },
   {
     id: 2,
     name: 'Curved Seam Side Legging',
-    price: '€65.00',
+    price: 65.00,
     image_url: '/images/products/image-38.png',
   },
   {
     id: 3,
     name: 'Long Sleeve Zip Front Jacket',
-    price: '€85.00',
+    price: 85.00,
     image_url: '/images/products/image-36.png',
   },
   {
     id: 4,
     name: 'Short Sleeve Fitted Tee',
-    price: '€42.00',
+    price: 42.00,
     image_url: '/images/products/image-15.png',
   },
 ]);

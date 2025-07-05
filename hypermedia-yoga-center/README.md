@@ -1,42 +1,37 @@
-# Nuxt Minimal Starter
+# Hypermedia Yoga Center
+
+This is a yoga center website built with Nuxt.js.
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## Project Setup on a New Machine
 
+Follow these steps to get the project running on a new computer after cloning it from GitHub.
+
+### 1. Navigate to the Project Directory
+First, open your terminal and change into the project's main folder:
 ```bash
-# npm
+cd hypermedia-yoga-center
+```
+
+### 2. Install Dependencies
+Next, install all the necessary project dependencies using npm:
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### 3. Start the Development Server
+Once the dependencies are installed, you can start the local development server:
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+
+### 4. Preview the Project
+The server will start, and you can view the website by opening your browser and navigating to `http://localhost:3000`. The terminal will show the exact address.
+
+---
 
 ## Production
 
@@ -45,15 +40,6 @@ Build the application for production:
 ```bash
 # npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
 Locally preview production build:
@@ -61,15 +47,6 @@ Locally preview production build:
 ```bash
 # npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

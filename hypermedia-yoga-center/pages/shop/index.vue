@@ -1,96 +1,77 @@
 <template>
-  <div>
+  <div class="bg-white">
     <LayoutTheHeader />
 
     <main>
-      <!-- Hero Section with Background Image -->
-      <section
-        class="relative bg-cover bg-center bg-no-repeat py-32"
-        :style="{ backgroundImage: `url('/images/team/hero-background.png')` }"
+      <!-- Breadcrumb -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p class="text-lg">
+          <NuxtLink to="/" class="text-green-700 hover:underline">Home</NuxtLink>
+          <span class="mx-2">/</span>
+          <span>Shop</span>
+        </p>
+      </div>
+
+      <!-- Hero Section -->
+      <section 
+        class="relative bg-cover bg-center bg-no-repeat min-h-[700px] flex items-center justify-center text-white"
+        style="background-image: url('/images/team/hero-background.png');"
       >
-        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-          <div class="mx-auto max-w-3xl text-center">
-            <h1
-              class="text-3xl font-extrabold sm:text-5xl"
+        <div class="text-center px-4">
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight" style="color: #ADBEAB;">
+            Enjoy 30 Days of Free Yoga Classes<br />
+            with Your Purchase
+          </h1>
+          <div class="mt-8">
+            <NuxtLink
+              to="/shop/apparel"
+              class="bg-[#2d5a27] text-white font-semibold py-4 px-10 rounded-lg text-lg hover:bg-opacity-90 transition"
             >
-              Enjoy 30 Days of Free Yoga
-              <span class="sm:block"> With Your Purchase. </span>
-            </h1>
+              SHOP THE COLLECTION
+            </NuxtLink>
+          </div>
+        </div>
+      </section>
 
-            <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-             Elevate your practice with our performance-tested apparel.
-            </p>
-
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-              <NuxtLink
-                class="block w-full rounded border border-green-700 bg-green-700 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
-                to="/shop/apparel"
-              >
-                Shop The Collection
-              </NuxtLink>
+      <!-- New Arrivals -->
+      <section class="bg-[#F9FAFB] py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">
+            New Arrivals
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+            <div v-for="product in newArrivals" :key="product.id" class="text-left group">
+              <div class="bg-white rounded-lg overflow-hidden mb-4 shadow-md">
+                <img :src="product.image_url" :alt="product.name" class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <h3 class="text-xl font-bold text-gray-900">{{ product.name }}</h3>
+              <p class="text-gray-600">{{ product.category }}</p>
+              <div class="flex justify-between items-center mt-2">
+                <p class="text-xl font-bold text-gray-900">€{{ product.price.toFixed(2) }}</p>
+                <a href="#" class="text-green-700 font-semibold hover:text-green-800">
+                  Learn More →
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- New Arrivals Section -->
-      <section id="new-arrivals" class="bg-white">
-        <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-          <div class="text-center">
-            <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              New Arrivals
-            </h2>
-          </div>
-
-          <ul class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <li v-for="product in newArrivals" :key="product.id">
-              <a href="#" class="group block overflow-hidden">
-                <img
-                  :src="product.image_url"
-                  :alt="product.name"
-                  class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                />
-
-                <div class="relative bg-white pt-3">
-                  <h3
-                    class="text-md text-gray-700 group-hover:underline group-hover:underline-offset-4"
-                  >
-                    {{ product.name }}
-                  </h3>
-
-                  <p class="mt-2">
-                    <span class="sr-only"> Regular Price </span>
-                    <span class="tracking-wider text-gray-900"> €{{ product.price.toFixed(2) }} </span>
-                  </p>
-                </div>
-              </a>
-              <div class="mt-4">
-                <button
-                  @click="addToCart(product)"
-                  class="block w-full rounded bg-[#2d5a27] p-4 text-sm font-medium text-white transition hover:scale-105"
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-       <!-- Marketing Section -->
-      <section class="bg-gray-50">
-        <div class="mx-auto max-w-screen-xl px-4 py-24 lg:flex lg:items-center">
-          <div class="mx-auto max-w-4xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              From the mat, to the world.
-            </h2>
-            <p class="mt-4 text-gray-600 sm:text-xl">
-               Since YogaWorks first opened in 1987, we've advocated for wellness that starts from within. Now, decades after we paved the way for modern yoga, we're taking things further. In addition to streaming classes, YogaWorks now offers elevated apparel designed to make whole-body wellness a way of life.
-            </p>
+      <!-- Marketing Section -->
+      <section class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 flex justify-center">
+              <img src="/images/about/vinyasa-flow.png" alt="Yoga practitioner" class="rounded-lg max-w-sm shadow-lg">
+            </div>
+            <div class="md:w-1/2 text-right">
+              <h2 class="text-4xl font-bold text-gray-900 leading-tight">
+                Since YogaWorks first opened in 1987, we've advocated for wellness that starts from within. Now, decades after we paved the way for modern yoga, we're taking things further. In addition to streaming classes, YogaWorks now offers elevated apparel designed to make whole-body wellness a way of life.
+              </h2>
+            </div>
           </div>
         </div>
       </section>
-
     </main>
 
     <LayoutTheFooter />
@@ -98,22 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from '~/stores/cart';
-
-const cartStore = useCartStore();
-
-const addToCart = (product: any) => {
-  cartStore.addItem({
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    image: product.image_url,
-    quantity: 1,
-    description: product.name, // Using name as description for now
-  });
-  // Optionally, show a notification
-  alert(`${product.name} has been added to the cart!`);
-};
+import { ref } from 'vue';
 
 useHead({
   title: 'Shop - Yoga Studio',
@@ -125,25 +91,29 @@ useHead({
 const newArrivals = ref([
   {
     id: 1,
-    name: 'Cross Back Performance Bra',
+    name: 'Cross Back Performace Bra',
+    category: 'Dewberry',
     price: 45.00,
     image_url: '/images/products/image-26.png',
   },
   {
     id: 2,
     name: 'Curved Seam Side Legging',
+    category: 'Dewberry',
     price: 65.00,
     image_url: '/images/products/image-38.png',
   },
   {
     id: 3,
-    name: 'Long Sleeve Zip Front Jacket',
+    name: 'Long Sleeve Zip Front Performance Jacket',
+    category: 'Dewberry',
     price: 85.00,
     image_url: '/images/products/image-36.png',
   },
   {
     id: 4,
-    name: 'Short Sleeve Fitted Tee',
+    name: 'Short Sleeve Fitted Performance Tee',
+    category: 'Dewberry',
     price: 42.00,
     image_url: '/images/products/image-15.png',
   },

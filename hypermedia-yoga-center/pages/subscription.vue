@@ -3,10 +3,10 @@
     <div class="flex">
       <!-- Left Panel -->
       <div class="w-[743px] bg-[#F7F7F5] p-20">
-        <div class="flex items-center mb-12">
+        <NuxtLink to="/" class="flex items-center mb-12">
           <img src="/images/logos/yoga-logo.svg" alt="Yoga Icon" class="h-9 w-9 mr-2">
           <span class="text-5xl font-pacifico text-[#2D5A27]">Yoga</span>
-        </div>
+        </NuxtLink>
         <p class="text-3xl font-semibold text-[#1A1A1A] mb-8">Start your 7-day free trial and 3 trial classes</p>
 
         <div class="space-y-5 mb-10">
@@ -25,13 +25,27 @@
               <div :class="['w-6 h-6 rounded-full border-2 transition-all', selectedPlan === 'monthly' ? 'border-[#FF994D] bg-[#FF994D]' : 'border-[#CCCCCC]']"></div>
             </div>
           </div>
-          <div class="bg-[#EBF2EB] rounded-xl p-6 h-[80px]">
-            <div class="flex justify-between items-center">
+          <!-- Gift Selector -->
+          <div class="bg-[#EBF2EB] rounded-xl p-6">
+            <div 
+              @click="toggleGift"
+              class="flex justify-between items-center cursor-pointer"
+            >
               <div>
                 <p class="text-2xl font-medium text-[#333333]">Gift this subscription</p>
-                <p class="text-lg text-[#666666]">Choose between 1-12 months</p>
+                <p v-if="!isGift" class="text-lg text-[#666666]">Activate to gift a subscription</p>
+                <p v-else class="text-lg text-[#4e7749]">Gifting is active</p>
               </div>
-              <span class="text-2xl text-[#4D4D4D]">V</span>
+              <div :class="['w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all', isGift ? 'border-[#4e7749] bg-[#D9E5D9]' : 'border-[#CCCCCC]']">
+                <span v-if="isGift" class="text-[#4e7749] text-lg">✓</span>
+              </div>
+            </div>
+            <!-- Month selector for gifting monthly plan -->
+            <div v-if="isGift && selectedPlan === 'monthly'" class="mt-4">
+              <label for="gift-months" class="block text-lg text-[#666666] mb-2">Number of months to gift:</label>
+              <select id="gift-months" v-model="giftMonths" class="w-full p-3 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
+                <option v-for="n in 12" :key="n" :value="n">{{ n }} month{{ n > 1 ? 's' : '' }}</option>
+              </select>
             </div>
           </div>
         </div>
@@ -50,12 +64,28 @@
       <!-- Right Panel -->
       <div class="w-full px-20 py-10">
         <p class="text-3xl font-semibold text-[#1A1A1A] mb-2">Start your 7-day free trial and 3 trial classes</p>
-        <p class="text-xl text-[#4D4D4D] mb-6">
-          An account is required to access your purchases. 
-          <span class="ml-20">Already have an account? <a href="#" class="text-[#E5B280]">Log in</a></span>
+        <p class="text-xl text-[#4D4D4D] mb-6 flex justify-between items-center">
+          <span>
+            An account is required to access your purchases. 
+            <span class="ml-4">Already have an account? <NuxtLink to="/login" class="text-[#E5B280]">Log in</NuxtLink></span>
+          </span>
+          <a href="#" @click.prevent="uiState = 'redeeming'" class="text-[#E5B280] font-semibold">Redeem a gift code</a>
         </p>
 
-        <form>
+        <!-- Redemption Form -->
+        <div v-if="uiState === 'redeeming'">
+          <p class="text-3xl font-semibold text-[#1A1A1A] my-6">Redeem Your Gift</p>
+          <div class="mt-4 flex items-center">
+            <input type="text" placeholder="Enter your gift code" class="flex-grow p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
+            <button type="button" class="ml-4 bg-[#E5B280] text-white font-semibold px-6 py-4 rounded-lg h-[60px]">Apply</button>
+          </div>
+          <p class="mt-4">
+            <a href="#" @click.prevent="uiState = 'paying'" class="text-[#E5B280]">Back to payment</a>
+          </p>
+        </div>
+
+        <!-- Payment Form -->
+        <form v-if="uiState === 'paying'">
           <div class="grid grid-cols-1 gap-y-4">
             <input type="email" placeholder="Email" class="w-full p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
             <input type="password" placeholder="Password" class="w-full p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
@@ -77,20 +107,20 @@
             <input type="text" value="Italy" class="p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px] text-black">
             <input type="text" placeholder="Promotion code" class="p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
           </div>
-
+          
           <div class="mt-8 text-2xl text-[#4D4D4D] space-y-2">
             <div class="flex justify-between">
-              <p>Annual subscription</p>
-              <p>EUR 299</p>
+              <p>{{ summaryText }}</p>
+              <p>EUR {{ planPrice }}</p>
             </div>
             <div class="flex justify-between">
               <p>Total</p>
-              <p>EUR 299</p>
+              <p>EUR {{ planPrice }}</p>
             </div>
           </div>
           <div class="flex justify-between text-3xl font-semibold text-[#1A1A1A] mt-4">
             <p>Due today</p>
-            <p>$299</p>
+            <p>€{{ planPrice }}</p>
           </div>
 
           <div class="border border-[#D9E5D9] rounded-lg p-6 mt-6">
@@ -109,9 +139,43 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-const selectedPlan = ref('annual') // Default to annual
+const selectedPlan = ref('annual')
+const isGift = ref(false)
+const giftMonths = ref(1)
+const uiState = ref('paying') // Can be 'paying' or 'redeeming'
+
+const toggleGift = () => {
+  isGift.value = !isGift.value
+  if (!isGift.value) {
+    giftMonths.value = 1 // Reset on deactivation
+  }
+}
+
+const planPrice = computed(() => {
+  if (selectedPlan.value === 'annual') {
+    return 299;
+  }
+  // If gifting, price is months * monthly_price
+  if (isGift.value) {
+    return (29.99 * giftMonths.value).toFixed(2);
+  }
+  return 29.99;
+})
+
+const summaryText = computed(() => {
+  const giftPrefix = isGift.value ? 'Gift - ' : ''
+  if (selectedPlan.value === 'annual') {
+    return `${giftPrefix}Annual subscription`
+  }
+  
+  if (isGift.value) {
+    return `${giftPrefix}${giftMonths.value} x Monthly subscription`
+  }
+  
+  return 'Monthly subscription'
+})
 </script>
 
 <style scoped>

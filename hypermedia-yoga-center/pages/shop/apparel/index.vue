@@ -105,26 +105,11 @@
 
           <!-- Product Grid -->
           <div class="grid grid-cols-3 gap-x-8 gap-y-16">
-            <div v-for="product in displayedProducts" :key="product.id" class="group">
-              <!-- Product Image -->
-              <div class="relative mb-4 overflow-hidden bg-gray-100">
-                <img 
-                  :src="product.imageSrc" 
-                  :alt="product.imageAlt"
-                  class="w-full h-[497px] object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              
-              <!-- Product Info -->
-              <div class="text-center">
-                <h3 class="text-[16px] font-bold text-black mb-2 leading-normal">{{ product.name }}</h3>
-                <div class="flex items-center justify-center space-x-2 text-[16px] text-black leading-normal">
-                  <span class="font-normal">{{ product.color }}</span>
-                  <span class="font-normal">→</span>
-                  <span class="font-normal">{{ product.price }}</span>
-                </div>
-              </div>
-            </div>
+            <ProductCard 
+              v-for="product in displayedProducts" 
+              :key="product.id" 
+              :product="product" 
+            />
           </div>
         </div>
       </div>
@@ -137,6 +122,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { Product } from '~/types';
+import ProductCard from '~/components/shop/ProductCard.vue';
 
 const { data: products } = await useFetch<Product[]>('/api/products');
 

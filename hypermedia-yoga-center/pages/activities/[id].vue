@@ -79,14 +79,11 @@
           </div>
 
           <!-- Book Now Button -->
-          <NuxtLink v-if="activity.isFree" 
-                    to="/login"
-                    class="block w-full text-center bg-[#2d5a27] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors">
-            Book Free Trial
-          </NuxtLink>
-          <button v-else 
-                  class="w-full bg-[#4b5563] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#374151] transition-colors">
-            Member Booking
+          <button 
+            @click="addToCart"
+            class="w-full text-center bg-[#2d5a27] text-white py-3 rounded-lg text-[15.375px] font-medium hover:bg-[#25492a] transition-colors"
+          >
+            Book
           </button>
         </div>
       </div>
@@ -129,8 +126,11 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from '~/stores/cart';
+
 const route = useRoute()
 const activityId = route.params.id as string
+const cartStore = useCartStore();
 
 // Activity data with English content
 const activityData: Record<string, any> = {
@@ -152,7 +152,8 @@ const activityData: Record<string, any> = {
       'Gentle Hatha sequences to awaken and energize the body',
       'Focus on relaxation and mental clarity',
       'Present-moment awareness practices'
-    ]
+    ],
+    price: 0
   },
   'tuesday-therapy': {
     title: 'Tuesday Therapy',
@@ -172,7 +173,8 @@ const activityData: Record<string, any> = {
       'Take-home techniques for daily tension relief',
       'Meditative poses for shoulder and neck release',
       'Restorative relaxation techniques'
-    ]
+    ],
+    price: 0
   },
   'wednesday-fusion': {
     title: 'Wednesday Fusion',
@@ -192,7 +194,8 @@ const activityData: Record<string, any> = {
       'Strengthens endurance while encouraging deep tissue release',
       'Ideal for body-mind balance and injury prevention',
       'Combines active practice with restorative elements'
-    ]
+    ],
+    price: 0
   },
   'thursday-specialty': {
     title: 'Thursday Specialty',
@@ -212,7 +215,8 @@ const activityData: Record<string, any> = {
       'Focus on pelvic floor recovery and breath awareness',
       'Emotional grounding techniques for motherhood',
       'Personalized guidance in a supportive environment'
-    ]
+    ],
+    price: 0
   },
   'friday-masterclass': {
     title: 'Friday Masterclass',
@@ -232,7 +236,8 @@ const activityData: Record<string, any> = {
       'Synchronized breath, movement, and gaze (Drishti)',
       'Builds strength, stamina, and mental focus',
       'Traditional approach to dynamic yoga practice'
-    ]
+    ],
+    price: 0
   },
   'saturday-family': {
     title: 'Saturday Family Yoga',
@@ -252,7 +257,8 @@ const activityData: Record<string, any> = {
       'Breathwork and mindfulness games for kids',
       'Gentle partner yoga to enhance bonding',
       'Introduction to relaxation techniques for families'
-    ]
+    ],
+    price: 25
   },
   'sunday-vinyasa': {
     title: 'Sunday Sunrise Vinyasa',
@@ -272,7 +278,8 @@ const activityData: Record<string, any> = {
       'Focus on breath-to-movement synchronization',
       'Invigorating sun salutations to energize the day',
       'Closing meditation with nature sounds'
-    ]
+    ],
+    price: 0
   },
   'special-healing': {
     title: 'Deep Stretch & Sound Healing',
@@ -292,11 +299,47 @@ const activityData: Record<string, any> = {
       'Sound bath healing with Tibetan singing bowls',
       'Guided meditation to restore energy balance',
       'Aromatherapy-infused ambiance for full sensory relaxation'
-    ]
+    ],
+    price: 0
+  },
+  'special-event': {
+    title: 'Special Event: Sound Bath Meditation',
+    subtitle: 'Deep Relaxation & Healing Vibrations',
+    description: 'Community Workshop',
+    instructor: 'Liam O\'Connell',
+    image: '/images/activities/activity-special.png',
+    isFree: false,
+    duration: '90 min',
+    location: 'Main Studio',
+    schedule: 'Last Sunday of the month, 7:00-8:30 PM',
+    intensity: 'Restorative',
+    capacity: 'Max 20 people',
+    suitableFor: 'Anyone seeking deep relaxation and stress reduction, no yoga experience needed',
+    highlights: [
+      'Immersive experience with crystal bowls, gongs, and chimes',
+      'Promotes deep meditative states and cellular healing',
+      'Reduces stress, anxiety, and physical tension',
+      'Guided by a certified sound healing practitioner'
+    ],
+    price: 35
   }
 }
 
 const activity = computed(() => activityData[activityId])
+
+const addToCart = () => {
+  if (activity.value) {
+    cartStore.addItem({
+      id: Date.now(),
+      name: activity.value.title,
+      price: activity.value.price || 0,
+      quantity: 1,
+      image: activity.value.image,
+      description: activity.value.subtitle,
+    });
+    alert(`${activity.value.title} has been added to your cart!`);
+  }
+};
 
 useHead({
   title: `${activity.value?.title || 'Activity'} - Yoga Studio`,

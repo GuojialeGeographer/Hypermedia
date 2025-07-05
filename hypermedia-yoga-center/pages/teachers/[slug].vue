@@ -1,55 +1,64 @@
 <template>
-  <div v-if="teacher" class="bg-white">
+  <div v-if="teacher" class="bg-white font-inter">
     <LayoutTheHeader />
 
     <!-- Main Content -->
-    <div class="max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-16 py-12">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
       <!-- Breadcrumb -->
-      <nav class="flex items-center text-sm font-medium text-gray-500 mb-12">
-        <NuxtLink to="/" class="text-green-700 hover:text-green-800">Home</NuxtLink>
-        <span class="mx-2">/</span>
-        <NuxtLink to="/team" class="text-green-700 hover:text-green-800">Team</NuxtLink>
-        <span class="mx-2">/</span>
-        <span class="text-gray-800">{{ teacher.name }}</span>
+      <nav class="flex items-center text-lg text-gray-500 mb-12">
+        <NuxtLink to="/" class="text-[#4e7749] font-medium hover:underline">Home</NuxtLink>
+        <span class="mx-2 text-black">/</span>
+        <NuxtLink to="/team" class="text-[#4e7749] font-medium hover:underline">Team</NuxtLink>
+        <span class="mx-2 text-black">/</span>
+        <span class="text-black font-medium">{{ teacher.name }}</span>
       </nav>
 
       <!-- Teacher Details Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        
         <!-- Left Column: Image -->
-        <div class="lg:col-span-1">
-          <img :src="teacher.image" :alt="teacher.name" class="w-full h-auto object-cover rounded-lg shadow-md">
+        <div>
+          <img :src="teacher.image" :alt="teacher.name" class="w-full h-auto object-cover rounded-none">
         </div>
 
         <!-- Right Column: Info -->
-        <div class="lg:col-span-2">
-          <h1 class="text-5xl font-bold text-gray-900 mb-8">{{ teacher.name }}</h1>
-          <div class="prose prose-lg max-w-none text-gray-700">
-            <h2 class="font-bold text-xl text-gray-800">ABOUT:</h2>
-            <p>{{ teacher.bio }}</p>
-            
-            <h2 class="font-bold text-xl text-gray-800 mt-8">Teaching Style:</h2>
-            <p>{{ teacher.teachingStyle }}</p>
+        <div class="space-y-6">
+          <h1 class="text-4xl font-bold text-black">{{ teacher.name }}</h1>
+          
+          <div>
+            <h2 class="font-bold text-lg text-black mb-2">ABOUT:</h2>
+            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.bio }}</p>
+          </div>
+          
+          <div>
+            <h2 class="font-bold text-lg text-black mb-2">Teaching Style:</h2>
+            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.teachingStyle }}</p>
+          </div>
 
-            <h2 class="font-bold text-xl text-gray-800 mt-8">Yoga Philosophy:</h2>
-            <p>{{ teacher.yogaPhilosophy }}</p>
+          <div>
+            <h2 class="font-bold text-lg text-black mb-2">Yoga Philosophy:</h2>
+            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.yogaPhilosophy }}</p>
+          </div>
 
-            <h2 class="font-bold text-xl text-gray-800 mt-8">Course:</h2>
-            <ul class="list-disc pl-5">
-              <li v-for="course in teacher.courses" :key="course">{{ course }}</li>
-            </ul>
+          <div>
+            <h2 class="font-bold text-lg text-black mb-2">Course:</h2>
+            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.courses.join(', ') }}</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Other Teachers Section -->
-    <div v-if="otherTeachers.length > 0" class="bg-gray-50 mt-16 py-16">
-      <div class="max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-16">
-        <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Other teachers</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <div v-if="otherTeachers.length > 0" class="bg-white mt-16 py-16">
+      <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center text-black mb-12">Other teachers</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-12">
             <NuxtLink v-for="other in otherTeachers" :key="other.slug" :to="`/teachers/${other.slug}`" class="group text-center">
-                <img :src="other.image" :alt="other.name" class="w-full h-auto object-cover rounded-lg shadow-md transform transition-transform duration-300 group-hover:scale-105">
-                <p class="mt-4 font-semibold text-gray-800">{{ other.name }}</p>
+                <div class="w-full h-64 bg-gray-200 overflow-hidden">
+                  <img :src="other.image" :alt="other.name" class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105">
+                </div>
+                <p class="mt-4 font-semibold text-lg text-gray-800">{{ other.name }}</p>
             </NuxtLink>
         </div>
       </div>
@@ -78,30 +87,45 @@ import type { Teacher } from '~/types';
 const route = useRoute();
 const slug = route.params.slug as string;
 
-const { data: teacher, error } = await useFetch<Teacher>(`/api/teachers/${slug}`);
-const { data: allTeachers } = await useFetch<Teacher[]>('/api/teachers');
+// Fetch all teachers once
+const { data: allTeachers, error: allTeachersError } = await useFetch<Teacher[]>('/api/teachers');
 
+// Find the current teacher from the fetched list
+const teacher = computed(() => allTeachers.value?.find(t => t.slug === slug));
+const error = computed(() => !teacher.value && (allTeachersError.value || !allTeachers.value));
+
+// Compute other teachers, excluding the current one
 const otherTeachers = computed(() => {
   if (!allTeachers.value || !teacher.value) {
     return [];
   }
+  // Make sure to filter out the current teacher
   return allTeachers.value.filter(t => t.slug !== slug).slice(0, 5);
 });
 
-// SEO Head
-useHead({
-  title: teacher.value ? `${teacher.value.name} - Yoga Teacher` : 'Teacher Profile',
-  meta: [
-    { name: 'description', content: teacher.value ? `Learn more about ${teacher.value.name}, our dedicated yoga instructor.` : 'Meet our yoga instructors.' }
-  ]
+// Set head based on computed teacher data
+watchEffect(() => {
+  if (teacher.value) {
+    useHead({
+      title: `${teacher.value.name} - Yoga Teacher`,
+      meta: [
+        { name: 'description', content: `Learn more about ${teacher.value.name}, our dedicated yoga instructor.` }
+      ]
+    });
+  } else {
+    useHead({
+      title: 'Teacher Profile',
+      meta: [
+        { name: 'description', content: 'Meet our yoga instructors.' }
+      ]
+    });
+  }
 });
 </script>
 
 <style>
-.prose h2 {
-    margin-bottom: 0.5rem;
-}
-.prose p {
-    margin-bottom: 1rem;
+/* Scoped styles can be added here if needed, but for now using Tailwind utility classes */
+.font-inter {
+  font-family: 'Inter', sans-serif;
 }
 </style> 

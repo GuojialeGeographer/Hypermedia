@@ -24,10 +24,10 @@
     <!-- Breadcrumb and Team Section Wrapper -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <!-- Breadcrumb Navigation -->
-      <nav class="flex items-center text-sm font-medium mb-12">
-        <NuxtLink to="/" class="text-green-700 hover:text-green-800">Home</NuxtLink>
-        <span class="mx-2 text-gray-500">/</span>
-        <span class="text-gray-800">Team</span>
+      <nav class="text-lg sm:text-xl lg:text-2xl font-inter flex items-center font-medium mb-12">
+        <NuxtLink to="/" class="text-[#4e7749] hover:underline">Home</NuxtLink>
+        <span class="text-black mx-2">/</span>
+        <span class="text-black">Team</span>
       </nav>
 
       <!-- Team Members Section -->
@@ -40,7 +40,7 @@
             :to="`/teachers/${teacher.slug}`"
             class="group text-center"
           >
-            <div class="w-full aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+            <div class="w-40 h-40 rounded-lg overflow-hidden mx-auto">
               <img 
                 :src="teacher.image" 
                 :alt="teacher.name" 

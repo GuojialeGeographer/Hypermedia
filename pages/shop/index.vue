@@ -9,7 +9,7 @@
         style="background-image: url('/images/team/hero-background.png');"
       >
         <div class="text-center px-4">
-          <h1 class="font-bold" style="color: #ADBEAB; font-size: 46.875px; line-height: 60px;">
+          <h1 class="font-bold" style="color: #FFFFFF; font-size: 46.875px; line-height: 60px;">
             Enjoy 30 Days of Free Yoga Classes<br />
             with Your Purchase
           </h1>
@@ -25,21 +25,21 @@
       </section>
 
       <!-- New Arrivals -->
-      <section class="bg-[#F9FAFB] py-24">
+      <section v-if="products && products.length" class="bg-[#F9FAFB] py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">
             New Arrivals
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-            <div v-for="product in newArrivals" :key="product.id" class="text-left group">
+            <div v-for="product in products" :key="product.id" class="text-left group">
               <div class="bg-white rounded-lg overflow-hidden mb-4 shadow-md">
-                <img :src="product.image_url" :alt="product.name" class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-300">
+                <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-300">
               </div>
-              <h3 class="text-xl font-bold text-gray-900">{{ product.name }}</h3>
-              <p class="text-gray-600">{{ product.category }}</p>
+              <h3 class="text-xl font-bold text-gray-900 h-14">{{ product.name }}</h3>
+              <p class="text-gray-600">{{ product.color }}</p>
               <div class="flex justify-between items-center mt-2">
-                <p class="text-xl font-bold text-gray-900">€{{ product.price.toFixed(2) }}</p>
-                <NuxtLink to="#" class="text-green-700 font-semibold hover:text-green-800">
+                <p class="text-xl font-bold text-gray-900">{{ product.price }}</p>
+                <NuxtLink :to="`/shop/${product.id}`" class="text-green-700 font-semibold hover:text-green-800">
                   Learn More →
                 </NuxtLink>
               </div>
@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import type { Product } from '~/types';
 
 useHead({
   title: 'Shop - Yoga Studio',
@@ -79,34 +79,8 @@ useHead({
   ]
 });
 
-const newArrivals = ref([
-  {
-    id: 1,
-    name: 'Cross Back Performace Bra',
-    category: 'Dewberry',
-    price: 45.00,
-    image_url: '/images/products/image-26.png',
-  },
-  {
-    id: 2,
-    name: 'Curved Seam Side Legging',
-    category: 'Dewberry',
-    price: 65.00,
-    image_url: '/images/products/image-38.png',
-  },
-  {
-    id: 3,
-    name: 'Long Sleeve Zip Front Performance Jacket',
-    category: 'Dewberry',
-    price: 85.00,
-    image_url: '/images/products/image-36.png',
-  },
-  {
-    id: 4,
-    name: 'Short Sleeve Fitted Performance Tee',
-    category: 'Dewberry',
-    price: 42.00,
-    image_url: '/images/products/image-15.png',
-  },
-]);
+const { data: products, pending, error } = await useAsyncData<Product[]>(
+  'products',
+  () => $fetch('/api/products')
+);
 </script> 

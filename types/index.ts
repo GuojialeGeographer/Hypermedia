@@ -36,4 +36,7 @@ export interface Product {
   price: string;
   color: string;
   category: 'top' | 'bottom' | 'jacket';
+  description?: string;
+  details?: string;
+  materials?: string;
 } 

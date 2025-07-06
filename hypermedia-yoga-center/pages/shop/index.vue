@@ -3,29 +3,20 @@
     <LayoutTheHeader />
 
     <main>
-      <!-- Breadcrumb -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <p class="text-lg">
-          <NuxtLink to="/" class="text-green-700 hover:underline">Home</NuxtLink>
-          <span class="mx-2">/</span>
-          <span>Shop</span>
-        </p>
-      </div>
-
       <!-- Hero Section -->
       <section 
-        class="relative bg-cover bg-center bg-no-repeat min-h-[700px] flex items-center justify-center text-white"
+        class="relative bg-cover bg-center bg-no-repeat min-h-[1200px] flex items-center justify-center text-white"
         style="background-image: url('/images/team/hero-background.png');"
       >
         <div class="text-center px-4">
-          <h1 class="text-5xl md:text-6xl font-bold leading-tight" style="color: #ADBEAB;">
+          <h1 class="font-bold" style="color: #ADBEAB; font-size: 46.875px; line-height: 60px;">
             Enjoy 30 Days of Free Yoga Classes<br />
             with Your Purchase
           </h1>
           <div class="mt-8">
             <NuxtLink
               to="/shop/apparel"
-              class="bg-[#2d5a27] text-white font-semibold py-4 px-10 rounded-lg text-lg hover:bg-opacity-90 transition"
+              class="bg-[#2d5a27] text-white font-semibold py-[17px] px-8 rounded-lg text-lg hover:bg-opacity-90 transition"
             >
               SHOP THE COLLECTION
             </NuxtLink>
@@ -48,9 +39,9 @@
               <p class="text-gray-600">{{ product.category }}</p>
               <div class="flex justify-between items-center mt-2">
                 <p class="text-xl font-bold text-gray-900">€{{ product.price.toFixed(2) }}</p>
-                <a href="#" class="text-green-700 font-semibold hover:text-green-800">
+                <NuxtLink to="#" class="text-green-700 font-semibold hover:text-green-800">
                   Learn More →
-                </a>
+                </NuxtLink>
               </div>
             </div>
           </div>

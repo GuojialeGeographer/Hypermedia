@@ -3,51 +3,49 @@
     <LayoutTheHeader />
     
     <!-- 面包屑导航 -->
-    <div class="max-w-[1920px] mx-auto px-9 pt-6">
-      <nav class="flex items-center text-[25px] space-x-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <nav class="flex items-center text-lg sm:text-xl md:text-2xl space-x-2">
         <NuxtLink to="/" class="text-[#4e7749] font-medium">Home</NuxtLink>
-        <span class="text-black font-normal">/</span>
-        <span class="text-black font-medium">Activities</span>
+        <span class="text-gray-500">/</span>
+        <span class="text-gray-800 font-medium">Activities</span>
       </nav>
     </div>
 
     <!-- 页面标题 -->
-    <div class="max-w-[1920px] mx-auto text-center mt-8 mb-16">
-      <h1 class="text-[48px] font-bold text-black leading-[20px]">Activity Arrangement</h1>
+    <div class="max-w-7xl mx-auto text-center mt-8 mb-12 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black">Activity Arrangement</h1>
     </div>
 
     <!-- 活动安排网格 -->
-    <div class="max-w-[1920px] mx-auto px-6 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-12">
       <!-- Monday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-monday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-3 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-monday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/monday-mindfulness" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Monday Mindfulness</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Monday Mindfulness</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Awakening the Mind</h4>
-            <p class="text-[#666666] text-[22px] mb-8 text-center">Yoga & Meditation Discovery Class</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Awakening the Mind</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Yoga & Meditation Discovery Class</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Beginners | Office Workers | Stress Relief Seekers
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Ashley Lorenzo</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Ashley Lorenzo</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-20">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• Guided breathwork & mindfulness meditation</li>
               <li>• Gentle Hatha sequences to awaken and energize the body</li>
               <li>• Focus on relaxation and mental clarity</li>
@@ -58,35 +56,33 @@
       </div>
 
       <!-- Tuesday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-tuesday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-0 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-tuesday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/tuesday-therapy" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Tuesday Therapy</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Tuesday Therapy</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Shoulder & Neck Healing</h4>
-            <p class="text-[#666666] text-[22px] mb-8 text-center">Therapeutic Yoga Masterclass</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Shoulder & Neck Healing</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Therapeutic Yoga Masterclass</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Office workers | Neck/shoulder discomfort | Yoga therapy students
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Jivana Heyman</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Jivana Heyman</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-20">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• Yoga props and alignment techniques for safe recovery</li>
               <li>• Take-home techniques for daily tension relief</li>
               <li>• Meditative poses for shoulder and neck release</li>
@@ -97,35 +93,33 @@
       </div>
 
       <!-- Wednesday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-wednesday.png')"></div>
-        <div class="bg-[#fafaf5] w-[802px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+       <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-wednesday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/wednesday-fusion" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Wednesday Fusion</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Wednesday Fusion</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Balance Between Stillness & Motion</h4>
-            <p class="text-[#666666] text-[22px] mb-8 text-center">Fusion Flow</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Balance Between Stillness & Motion</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Fusion Flow</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Intermediate practitioners | Strength & flexibility seekers
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Georgia Weibel</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Georgia Weibel</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-16">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• A blend of Yin and Yang yoga: dynamic flows plus deep holds</li>
               <li>• Strengthens endurance while encouraging deep tissue release</li>
               <li>• Ideal for body-mind balance and injury prevention</li>
@@ -136,35 +130,33 @@
       </div>
 
       <!-- Thursday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1054px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-thursday.png')"></div>
-        <div class="bg-[#fafaf5] w-[786px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-thursday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/thursday-specialty" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Thursday Specialty</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Thursday Specialty</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Prenatal Yoga Private Experience</h4>
-            <p class="text-[#666666] text-[22px] mb-8 text-center">Specialty Class</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Prenatal Yoga Private Experience</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Specialty Class</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Expectant mothers | Postnatal recovery
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Tamika Caston-Miller</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Tamika Caston-Miller</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-16">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• Safe movements tailored for pregnancy and postpartum</li>
               <li>• Focus on pelvic floor recovery and breath awareness</li>
               <li>• Emotional grounding techniques for motherhood</li>
@@ -175,35 +167,33 @@
       </div>
 
       <!-- Friday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6">
-        <div class="w-[1065px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-friday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-friday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/friday-masterclass" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Friday Masterclass</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Friday Masterclass</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Introduction to Ashtanga Fundamentals</h4>
-            <p class="text-[#666666] text-[22px] mb-8 text-center">Advanced Practice</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Introduction to Ashtanga Fundamentals</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Advanced Practice</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[21px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Intermediate to advanced students | Physical challenge seekers
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Vytas Baskauskas</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Vytas Baskauskas</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-16">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• Introduction to the Primary Series of Ashtanga Yoga</li>
               <li>• Synchronized breath, movement, and gaze (Drishti)</li>
               <li>• Builds strength, stamina, and mental focus</li>
@@ -214,34 +204,32 @@
       </div>
 
       <!-- Saturday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-saturday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-saturday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
+          <div class="mt-12">
             <NuxtLink to="/activities/saturday-family" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Saturday Family Yoga</h3>
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Saturday Family Yoga</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Joyful Bonding & Movement</h4>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Joyful Bonding & Movement</h4>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
                 Parents & kids (ages 4-10) | Beginner-friendly
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Emily Carter</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Emily Carter</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-16">
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
               <li>• Fun and interactive yoga sequences for parents and children</li>
               <li>• Breathwork and mindfulness games for kids</li>
               <li>• Gentle partner yoga to enhance bonding</li>
@@ -250,83 +238,76 @@
           </div>
         </div>
       </div>
-
+      
       <!-- Sunday -->
-      <div class="flex items-stretch justify-center mb-12 gap-6">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-sunday.png')"></div>
-        <div class="bg-[#fafaf5] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Free Trial Badge -->
-          <NuxtLink to="/login" class="absolute top-2 right-12 bg-white border border-[#4e7749] rounded-[10px] px-6 py-3 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-[24px]">Free Trial</span>
+      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-sunday.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
           </NuxtLink>
           
-          <div class="mt-16">
-            <NuxtLink to="/activities/sunday-vinyasa" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Sunday Sunrise Vinyasa</h3>
+          <div class="mt-12">
+            <NuxtLink to="/activities/sunday-flow" class="hover:opacity-80 transition-opacity">
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Sunday Slow Flow</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-[28px] font-normal mb-2 text-center">Energizing Flow to Start Your Day</h4>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Deep Relaxation & Gentle Stretching</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">Restorative Yoga</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
-                All levels | Early risers | Outdoor enthusiasts
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
+                All levels | Stress reduction seekers | Deep relaxation lovers
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Daniel Moreau</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Isabella Costa</p>
             
-            <h5 class="text-[#336666] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-[22px] space-y-2 text-left pl-20">
-              <li>• A dynamic flow to awaken the body and mind</li>
-              <li>• Focus on breath-to-movement synchronization</li>
-              <li>• Invigorating sun salutations to energize the day</li>
-              <li>• Closing meditation with nature sounds</li>
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
+              <li>• Gentle, slow-paced movements to release tension</li>
+              <li>• Use of props (bolsters, blankets) for full support</li>
+              <li>• Guided meditation for profound relaxation</li>
+              <li>• Perfect for winding down and preparing for the week ahead</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Members Exclusive -->
-      <div class="flex items-stretch justify-center mb-12 gap-6 flex-row-reverse">
-        <div class="w-[1058px] bg-cover bg-center rounded-none flex-shrink-0" style="background-image: url('/images/activities/activity-special.png')"></div>
-        <div class="bg-[#f2f2fa] w-[800px] rounded-2xl p-8 relative flex-shrink-0">
-          <!-- Members Badge -->
-          <div class="absolute top-5 left-3 bg-[#4d4d99] rounded-[20px] px-5 py-2">
-            <span class="text-white font-semibold text-[16px]">MEMBERS</span>
-          </div>
+      <!-- Special Event -->
+      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-special.png')"></div>
+        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
+          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
+            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
+          </NuxtLink>
           
-          <!-- Register Badge -->
-          <div class="absolute top-3 right-12 bg-white border border-[#432963] rounded-[10px] px-6 py-3">
-            <span class="text-[#36254a] font-bold text-[24px]">Register</span>
-          </div>
-          
-          <div class="mt-16">
-            <NuxtLink to="/activities/special-healing" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#4d4d99] font-semibold text-[22px] mb-2 text-center hover:underline cursor-pointer">Deep Stretch & Sound Healing</h3>
+          <div class="mt-12">
+            <NuxtLink to="/activities/special-event" class="hover:opacity-80 transition-opacity">
+              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Special Event</h3>
             </NuxtLink>
-            <p class="text-[#666680] text-[22px] mb-8 text-center">Yoga Immersion Experience</p>
+            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Community Outdoor Yoga</h4>
+            <p class="text-[#666666] text-lg mb-6 text-center">All-levels welcome!</p>
             
-            <!-- Divider -->
-            <div class="w-[600px] h-px bg-[rgba(102,102,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
             
             <div class="text-center mb-4">
-              <p class="text-[#4d4d66] text-[22px] leading-[normal]">
-                👥 Suitable For:<br/>
-                Yoga members | Deep relaxation seekers
+              <p class="text-[#4d4d4d] text-base leading-relaxed">
+                <span class="font-semibold">👥 Suitable For:</span><br/>
+                Everyone! | Community lovers | Nature enthusiasts
               </p>
             </div>
             
-            <p class="text-[#4d4d66] text-[22px] mb-6 text-center">🧘‍♀️ Instructor: Sophia Lin</p>
+            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Various</p>
             
-            <h5 class="text-[#4d4d99] font-semibold text-[22px] mb-4 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d66] text-[22px] space-y-2 text-left pl-16">
-              <li>• Gentle Yin yoga with extended holds for deep muscle release</li>
-              <li>• Sound bath healing with Tibetan singing bowls</li>
-              <li>• Guided meditation to restore energy balance</li>
-              <li>• Aromatherapy-infused ambiance for full sensory relaxation</li>
+            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
+              <li>• Connect with nature and the community through yoga</li>
+              <li>• Energizing flow suitable for all experience levels</li>
+              <li>• A beautiful outdoor setting to enhance your practice</li>
+              <li>• A great way to meet fellow yoga enthusiasts</li>
             </ul>
           </div>
         </div>
@@ -341,13 +322,11 @@
 useHead({
   title: 'Activity Arrangement - Yoga Studio',
   meta: [
-    { name: 'description', content: 'Explore our weekly activity arrangement with specialized yoga classes for every day of the week.' }
+    { name: 'description', content: 'Explore our weekly schedule of yoga classes and special events. Find the perfect session for you, from Monday Mindfulness to Sunday Slow Flow.' }
   ]
 })
 </script>
 
 <style scoped>
-.font-pacifico {
-  font-family: 'Pacifico', cursive;
-}
+/* Scoped styles can be added here if necessary */
 </style>

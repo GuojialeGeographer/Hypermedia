@@ -15,14 +15,14 @@
         <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
           <NuxtLink
             class="block w-full rounded-md bg-green-800 px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-700 focus:outline-none focus:ring active:bg-green-500 sm:w-auto"
-            to="#"
+            to="/login"
           >
             Get 7 Days Free
           </NuxtLink>
 
           <NuxtLink
             class="block w-full rounded-md border border-green-800 px-12 py-3 text-sm font-medium text-green-800 shadow hover:text-green-700 focus:outline-none focus:ring active:text-green-500 sm:w-auto"
-            to="#"
+            to="/classes"
           >
             View Class Schedule
           </NuxtLink>

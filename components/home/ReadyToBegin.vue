@@ -15,7 +15,7 @@
         <div class="flex flex-col sm:flex-row sm:justify-center gap-4">
           <NuxtLink
             class="block w-full rounded-md bg-green-800 px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-700 focus:outline-none focus:ring active:bg-green-500 sm:w-auto"
-            to="/login"
+            to="/subscription"
           >
             Get 7 Days Free
           </NuxtLink>

@@ -1,5 +1,5 @@
 {
   "framework": "nuxtjs",
   "buildCommand": "npx nuxt prepare && npm run build",
-  "installCommand": "npm install --legacy-peer-deps --no-fund --no-audit"
+  "installCommand": "npm install --legacy-peer-deps"
 } 

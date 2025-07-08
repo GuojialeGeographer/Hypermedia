@@ -1,5 +1,6 @@
 {
   "framework": "nuxtjs",
-  "buildCommand": "npx nuxt prepare && npm run build",
-  "installCommand": "npm install --legacy-peer-deps"
+  "installCommand": "yarn install --ignore-engines",
+  "buildCommand": "yarn build",
+  "outputDirectory": ".output/public"
 } 

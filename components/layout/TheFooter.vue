@@ -72,6 +72,7 @@
 <script setup lang="ts">
 const quickLinks = [
   { name: 'Activities', href: '/activities' },
+  { name: 'Highlights', href: '/highlights' },
   { name: 'Classes', href: '/classes' },
   { name: 'Team', href: '/team' },
   { name: 'About Us', href: '/about-us' },

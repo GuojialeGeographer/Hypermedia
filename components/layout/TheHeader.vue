@@ -156,6 +156,7 @@ const mobileMenuOpen = ref(false)
 
 const navigation = [
   { name: 'Activities', href: '/activities' },
+  { name: 'Highlights', href: '/highlights' },
   { name: 'Team', href: '/team' },
   { name: 'Classes', href: '/classes' },
   { name: 'Shop', href: '/shop' },

@@ -1,4 +1,4 @@
-import { defineEventHandler, getRouterParam } from 'h3';
+import { defineEventHandler } from 'h3';
 
 export interface Course {
   id: number;
@@ -65,14 +65,5 @@ const courses: Course[] = [
 ];
 
 export default defineEventHandler((event) => {
-  const slug = getRouterParam(event, 'slug');
-  const course = courses.find((c) => c.slug === slug);
-
-  if (!course) {
-    // Set response status code to 404
-    event.node.res.statusCode = 404;
-    return { error: 'Course not found' };
-  }
-
-  return course;
+  return courses;
 }); 

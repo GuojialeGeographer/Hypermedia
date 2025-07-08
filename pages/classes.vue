@@ -33,7 +33,7 @@
 
           <!-- Details -->
           <div class="w-full md:w-[932px] relative">
-            <div class="absolute bg-[#D9D9D9] bg-opacity-30 -inset-4 md:-inset-x-8 md:-inset-y-12 z-0"></div>
+            <div class="absolute bg-[#D9D9D9] bg-opacity-30 -inset-4 md:-inset-x-8 md:-inset-y-12 z-[-1]"></div>
             <div class="relative z-10 p-4 md:p-8">
 
               <!-- Price Tag -->
@@ -42,15 +42,30 @@
               </div>
 
               <!-- Title with padding to avoid overlap -->
-              <NuxtLink :to="`/classes/${course.slug}`" class="hover:text-green-700 transition-colors">
+              <NuxtLink :to="getCourseLinkUrl(course)" class="hover:text-green-700 transition-colors">
                 <h2 class="text-2xl md:text-3xl font-regular text-black pr-24 md:pr-32">
                   {{ course.title }}
-                  <span class="whitespace-nowrap">(Intensity Level: {{ '★'.repeat(course.intensity) }}{{ '☆'.repeat(5 - course.intensity) }})</span>
                 </h2>
               </NuxtLink>
-              <div class="mt-4 mb-4 h-px"></div>
-              <p class="text-lg md:text-xl font-regular text-black mb-4">{{ course.courseName }}</p>
-              <p class="text-base md:text-lg font-regular text-black leading-relaxed" v-html="course.description"></p>
+              <p class="text-gray-500 mb-4">(Intensity Level: {{ '★'.repeat(course.intensity) }}{{ '☆'.repeat(5 - course.intensity) }})</p>
+
+              <div class="h-px bg-gray-200 my-4"></div>
+
+              <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">
+                {{ course.courseName }}
+              </h3>
+              
+              <p class="text-base text-gray-600 leading-relaxed mb-6" v-html="course.description"></p>
+              
+              <!-- Action Button -->
+              <div class="flex items-center">
+                <button 
+                  @click="bookCourse(course)"
+                  class="inline-flex items-center bg-[#2D5A27] text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-300"
+                >
+                  Book Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -63,6 +78,7 @@
 
 <script setup lang="ts">
 import type { Course } from '~/server/api/classes';
+import { useCartStore } from '~/stores/cart';
 
 useHead({
   title: 'Classes Introduction - Yoga Studio',
@@ -71,7 +87,35 @@ useHead({
   ]
 });
 
-const { data: courses } = await useFetch<Course[]>('/api/classes')
+const { data: courses } = await useFetch<Course[]>('/api/classes');
+
+const cartStore = useCartStore();
+
+// 生成课程链接URL的函数
+const getCourseLinkUrl = (course: Course) => {
+  if (course.slug === 'beginner-yoga') {
+    return '/classes/beginner-yoga-course/registration';
+  }
+  return `/classes/${course.slug}`;
+};
+
+const bookCourse = (course: Course) => {
+  if (!course) return;
+
+  // 为课程生成一个简单的数字ID，基于slug的哈希
+  const courseId = course.slug.split('').reduce((hash, char) => hash + char.charCodeAt(0), 0);
+
+  cartStore.addItem({
+    id: courseId,
+    name: course.title,
+    price: course.price,
+    quantity: 1,
+    image: course.imageUrl,
+    description: course.courseName,
+  });
+
+  alert(`✅ "${course.title}" has been added to your cart!`);
+};
 </script>
 
 <style scoped>

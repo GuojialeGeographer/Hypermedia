@@ -21,8 +21,8 @@ export default defineNuxtConfig({
   },
 
   app: {
-    // 为GitHub Pages部署配置
-    baseURL: process.env.NODE_ENV === 'production' ? '/Hypermedia/' : '/', // 你的GitHub仓库名
+    // 智能部署配置：Vercel使用根路径，GitHub Pages使用子路径
+    baseURL: process.env.VERCEL ? '/' : (process.env.NODE_ENV === 'production' ? '/Hypermedia/' : '/'),
     buildAssetsDir: 'assets',
   },
 

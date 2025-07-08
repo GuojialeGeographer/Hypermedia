@@ -18,6 +18,18 @@ logs
 .fleet
 .idea
 
+# Temporary files
+temp_*.html
+temp_*.js
+temp_*.css
+
+# Backup directories
+_backup/
+backup/
+
+# Vercel
+.vercel
+
 # Local env files
 .env
 .env.*

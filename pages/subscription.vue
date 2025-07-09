@@ -64,28 +64,13 @@
       <!-- Right Panel -->
       <div class="w-full px-20 py-10">
         <p class="text-3xl font-semibold text-[#1A1A1A] mb-2">Start your 7-day free trial and 3 trial classes</p>
-        <p class="text-xl text-[#4D4D4D] mb-6 flex justify-between items-center">
-          <span>
-            An account is required to access your purchases. 
-            <span class="ml-4">Already have an account? <NuxtLink to="/login" class="text-[#E5B280]">Log in</NuxtLink></span>
-          </span>
-          <a href="#" @click.prevent="uiState = 'redeeming'" class="text-[#E5B280] font-semibold">Redeem a gift code</a>
+        <p class="text-xl text-[#4D4D4D] mb-6">
+          An account is required to access your purchases. 
+          <span class="ml-4">Already have an account? <NuxtLink to="/login" class="text-[#E5B280]">Log in</NuxtLink></span>
         </p>
 
-        <!-- Redemption Form -->
-        <div v-if="uiState === 'redeeming'">
-          <p class="text-3xl font-semibold text-[#1A1A1A] my-6">Redeem Your Gift</p>
-          <div class="mt-4 flex items-center">
-            <input type="text" placeholder="Enter your gift code" class="flex-grow p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
-            <button type="button" class="ml-4 bg-[#E5B280] text-white font-semibold px-6 py-4 rounded-lg h-[60px]">Apply</button>
-          </div>
-          <p class="mt-4">
-            <a href="#" @click.prevent="uiState = 'paying'" class="text-[#E5B280]">Back to payment</a>
-          </p>
-        </div>
-
         <!-- Payment Form -->
-        <form v-if="uiState === 'paying'">
+        <form>
           <div class="grid grid-cols-1 gap-y-4">
             <input type="email" placeholder="Email" class="w-full p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
             <input type="password" placeholder="Password" class="w-full p-4 border border-[#CCCCCC] rounded-lg text-xl h-[60px]">
@@ -144,7 +129,6 @@ import { ref, computed } from 'vue'
 const selectedPlan = ref('annual')
 const isGift = ref(false)
 const giftMonths = ref(1)
-const uiState = ref('paying') // Can be 'paying' or 'redeeming'
 
 const toggleGift = () => {
   isGift.value = !isGift.value

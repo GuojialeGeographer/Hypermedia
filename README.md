@@ -2,6 +2,8 @@
 
 This is a yoga center website built with Nuxt.js.
 
+Website：https://hypermedia-one.vercel.app/
+
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ---

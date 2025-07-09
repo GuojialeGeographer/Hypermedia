@@ -213,24 +213,20 @@ const highlightedActivities = computed(() => {
   }))
 })
 
-// Book class function (integrate with cart store if needed)
+// Book class function
+import { useCartStore } from '~/stores/cart'
+
 const bookClass = (activity: Activity) => {
-  // You can integrate this with your existing cart store
-  console.log('Booking class:', activity.name)
-  
-  // For now, we'll just show an alert
-  // In a real app, you might navigate to a booking page or open a modal
-  alert(`Booking ${activity.name}! This feature will be integrated with the booking system.`)
-  
-  // Example of how you might integrate with a cart store:
-  // const cartStore = useCartStore()
-  // cartStore.addItem({
-  //   id: activity.id,
-  //   name: activity.name,
-  //   price: activity.price || 0,
-  //   type: 'class'
-  // })
-  // navigateTo('/cart')
+  const cartStore = useCartStore()
+  cartStore.addItem({
+    id: activity.id,
+    name: activity.name,
+    price: activity.price || 50,
+    image: activity.image_url,
+    quantity: 1,
+    type: 'class'
+  })
+  navigateTo('/cart')
 }
 </script>
 

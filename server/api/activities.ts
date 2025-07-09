@@ -14,6 +14,7 @@ const activities: Activity[] = [
     intensity: 'All Levels',
     capacity: 20,
     is_featured: true,
+    price: 98,
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const activities: Activity[] = [
     intensity: 'All Levels',
     capacity: 15,
     is_featured: true,
+    price: 118,
   },
   {
     id: 3,
@@ -42,6 +44,7 @@ const activities: Activity[] = [
     intensity: 'Low',
     capacity: 18,
     is_featured: false,
+    price: 98,
   },
   {
     id: 4,
@@ -56,6 +59,7 @@ const activities: Activity[] = [
     intensity: 'Very Low',
     capacity: 12,
     is_featured: true,
+    price: 128,
   },
   {
     id: 5,
@@ -70,6 +74,7 @@ const activities: Activity[] = [
     intensity: 'High',
     capacity: 15,
     is_featured: false,
+    price: 168,
   },
   {
     id: 6,
@@ -84,6 +89,7 @@ const activities: Activity[] = [
     intensity: 'Low',
     capacity: 20,
     is_featured: true,
+    price: 148,
   },
   {
     id: 7,
@@ -98,6 +104,7 @@ const activities: Activity[] = [
     intensity: 'Intermediate',
     capacity: 10,
     is_featured: true,
+    price: 128,
   },
   {
     id: 8,
@@ -112,6 +119,7 @@ const activities: Activity[] = [
     intensity: 'High',
     capacity: 15,
     is_featured: true,
+    price: 168,
   },
 ]
 

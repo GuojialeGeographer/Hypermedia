@@ -37,11 +37,11 @@
             <div class="h-0.5 bg-[#cccccc] mb-6"></div>
 
             <!-- Filter Options -->
-            <div class="space-y-6">
+            <div class="space-y-4">
               <div>
                 <NuxtLink 
                   to="/shop/apparel/top" 
-                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                  class="text-xl font-bold text-black hover:text-[#4e7749] transition-colors"
                 >
                   Top
                 </NuxtLink>
@@ -50,7 +50,7 @@
               <div>
                 <NuxtLink 
                   to="/shop/apparel/bottoms" 
-                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                  class="text-xl font-bold text-black hover:text-[#4e7749] transition-colors"
                 >
                   Bottoms
                 </NuxtLink>
@@ -59,30 +59,12 @@
               <div>
                 <NuxtLink 
                   to="/shop/apparel/jacket" 
-                  class="text-[36px] font-bold text-black hover:text-[#4e7749] transition-colors"
+                  class="text-xl font-bold text-black hover:text-[#4e7749] transition-colors"
                 >
                   Jacket
                 </NuxtLink>
               </div>
             </div>
-          </div>
-
-          <!-- Color Filter -->
-          <div class="mb-8">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-[36px] font-normal text-black">Color</h3>
-              <button class="text-[36px] text-black rotate-180">︾</button>
-            </div>
-            <div class="h-0.5 bg-[#cccccc]"></div>
-          </div>
-
-          <!-- Size Filter -->
-          <div class="mb-8">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-[36px] font-normal text-black">Size</h3>
-              <button class="text-[36px] text-black rotate-180">︾</button>
-            </div>
-            <div class="h-0.5 bg-[#cccccc]"></div>
           </div>
         </div>
 

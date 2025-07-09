@@ -32,13 +32,13 @@
         <!-- CTA按钮 -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <NuxtLink
-            to="/classes"
+            to="/login"
             class="bg-[#2d5a27] hover:bg-[#2d5a27]/90 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 min-w-[200px]"
           >
             Start Free Trial
           </NuxtLink>
           <NuxtLink
-            to="/classes"
+            to="/activities"
             class="border border-[#2d5a27] hover:bg-[#2d5a27] hover:text-white text-[#2d5a27] bg-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 min-w-[200px]"
           >
             View Class Schedule

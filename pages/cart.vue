@@ -1,109 +1,150 @@
 <template>
-  <div class="bg-white">
-    <div class="bg-[#FAFAFA] py-16 sm:py-24">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-center text-gray-900">Shopping Cart</h1>
-        
-        <div class="mt-12">
-          <section aria-labelledby="cart-heading">
-            <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-              <li v-if="cartItems.length === 0" class="py-6 text-center text-gray-500">
-                Your cart is empty.
-              </li>
-              <!-- Cart Items -->
-              <li v-for="item in cartItems" :key="item.id" class="flex py-6 sm:py-10">
-                <div class="flex-shrink-0">
-                   <img :src="item.image" :alt="item.name" class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48">
-                </div>
+  <div class="bg-gray-50 min-h-screen">
+    <LayoutTheHeader />
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Your Cart</h1>
+          
+          <div class="mt-12">
+            <section aria-labelledby="cart-heading">
+              <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
 
-                <div class="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                  <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+              <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                <li v-for="item in cartStore.items" :key="item.id" class="flex py-6">
+                  <div class="flex-shrink-0">
+                    <img :src="item.image" :alt="item.name" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                  </div>
+
+                  <div class="ml-4 flex flex-1 flex-col">
                     <div>
-                      <div class="flex justify-between">
-                        <h3 class="text-xl font-semibold text-gray-900">
-                          <a href="#" class="hover:text-gray-800">{{ item.name }}</a>
+                      <div class="flex justify-between text-base font-medium text-gray-900">
+                        <h3>
+                          <a :href="item.type === 'class' ? `/activities/${item.id}`: `/shop/${item.id}`">{{ item.name }}</a>
                         </h3>
+                        <p class="ml-4">{{ formatCurrency(item.price) }}</p>
                       </div>
-                      <p class="mt-1 text-base text-gray-600">{{ item.description }}</p>
-                      <p v-if="item.size" class="mt-1 text-base text-gray-600">Size {{ item.size }}</p>
-                      <p class="mt-2 text-xl font-semibold text-gray-900">€{{ item.price }}</p>
                     </div>
+                    <div class="flex flex-1 items-end justify-between text-sm">
+                      <div class="flex items-center">
+                        <button @click="cartStore.updateQuantity(item.id, item.quantity - 1)" class="text-gray-500 hover:text-gray-700 disabled:opacity-50" :disabled="item.quantity <= 1">-</button>
+                        <p class="text-gray-500 mx-2">{{ item.quantity }}</p>
+                        <button @click="cartStore.updateQuantity(item.id, item.quantity + 1)" class="text-gray-500 hover:text-gray-700">+</button>
+                      </div>
 
-                    <div class="mt-4 sm:mt-0 sm:pr-9">
-                       <label v-if="item.quantity" :for="`quantity-${item.id}`" class="sr-only">Quantity, {{ item.name }}</label>
-                        <select v-if="item.quantity" :id="`quantity-${item.id}`" v-model="item.quantity" name="quantity" class="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-green-700 focus:outline-none focus:ring-1 focus:ring-green-700 sm:text-sm">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      <div class="absolute right-0 top-0">
-                        <button @click="cartStore.removeItem(item.id)" type="button" class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
-                          <span class="sr-only">Remove</span>
-                           <svg class="h-5 w-5" x-description="Heroicon name: mini/x-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
-                          </svg>
-                        </button>
+                      <div class="flex">
+                        <button @click="cartStore.removeItem(item.id)" type="button" class="font-medium text-[#4e7749] hover:text-[#2d5a27]">Remove</button>
                       </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            </ul>
-          </section>
+                </li>
+              </ul>
+            </section>
 
           <!-- Order summary -->
           <section aria-labelledby="summary-heading" class="mt-10">
-            <div class="rounded-lg bg-gray-50 px-4 py-6 sm:p-8">
-              <h2 id="summary-heading" class="text-2xl font-semibold text-gray-900">Order summary</h2>
-              <dl class="mt-6 space-y-4">
+            <h2 id="summary-heading" class="sr-only">Order summary</h2>
+
+            <div>
+              <dl class="space-y-4">
                 <div class="flex items-center justify-between">
-                  <dt class="text-base text-gray-600">Subtotal</dt>
-                  <dd class="text-base font-medium text-gray-900">€{{ subtotal }}</dd>
+                  <dt class="text-base font-medium text-gray-900">Subtotal</dt>
+                  <dd class="ml-4 text-base font-medium text-gray-900">{{ formatCurrency(cartStore.subtotal) }}</dd>
                 </div>
               </dl>
-              <div class="mt-6">
-                <button type="submit" class="w-full rounded-md border border-transparent bg-[#2d5a27] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+              <p class="mt-1 text-sm text-gray-500">Shipping and taxes will be calculated at checkout.</p>
+            </div>
+
+            <div class="mt-10">
+              <NuxtLink to="/checkout" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
+                Checkout
+              </NuxtLink>
+            </div>
+
+            <div class="mt-6 text-center text-sm">
+              <p>
+                or <NuxtLink to="/classes" class="font-medium text-[#4e7749] hover:text-[#2d5a27]">Continue Shopping<span aria-hidden="true"> &rarr;</span></NuxtLink>
+              </p>
+            </div>
+          </section>
+
+          <!-- Recommended products -->
+          <section aria-labelledby="related-products-heading" class="mt-16">
+            <h2 id="related-products-heading" class="text-lg font-medium text-gray-900">You may also like&hellip;</h2>
+
+            <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              <div v-for="product in recommendedProducts" :key="product.id" class="group relative">
+                <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                  <img :src="product.image" :alt="product.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+                </div>
+                <div class="mt-4 flex justify-between">
+                  <div>
+                    <h3 class="text-sm text-gray-700">
+                      <a>
+                        <span aria-hidden="true" class="absolute inset-0"></span>
+                        {{ product.name }}
+                      </a>
+                    </h3>
+                    <p class="mt-1 text-sm text-gray-500">{{ product.description }}</p>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900">{{ formatCurrency(product.price) }}</p>
+                </div>
+                <button @click="addRecommendedToCart(product)" class="mt-4 w-full bg-white border border-[#4e7749] text-[#2d5a27] rounded-md py-2 px-4 hover:bg-gray-100">Add to cart</button>
               </div>
             </div>
           </section>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useCartStore } from '~/stores/cart';
-import { storeToRefs } from 'pinia';
+import { useCartStore } from '~/stores/cart'
+import type { CartItem } from '~/types'
 
-const cartStore = useCartStore();
-const { items: cartItems, subtotal } = storeToRefs(cartStore);
+const cartStore = useCartStore()
 
-// Add initial data for demonstration purposes if the cart is empty.
-onMounted(() => {
-  if (cartStore.items.length === 0) {
-    cartStore.addItem({
-      id: 1,
-      name: 'Monthly Unlimited Pass',
-      description: 'Access to all studio classes for 30 days',
-      price: 99,
-      quantity: 1,
-      image: '/images/activities/beginner-yoga.png',
-    });
-    cartStore.addItem({
-      id: 2,
-      name: 'Cross Back Performace Bra',
-      description: 'Dewberry',
-      price: 45,
-      size: 'XS',
-      quantity: 1,
-      image: '/images/products/image-27.png',
-    });
-  }
-});
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+}
+
+// Dummy data for demonstration
+const recommendedProducts: Omit<CartItem, 'quantity' | 'type'>[] = [
+  {
+    id: 101,
+    name: 'Eco-Friendly Yoga Mat',
+    price: 68,
+    image: '/images/shop/yoga-mat.png',
+    description: 'A premium, non-slip yoga mat made from sustainable materials.',
+  },
+  {
+    id: 102,
+    name: 'Comfort Yoga Blocks',
+    price: 25,
+    image: '/images/shop/yoga-blocks.png',
+    description: 'Lightweight, durable foam blocks for support and stability.',
+  },
+  {
+    id: 103,
+    name: 'Organic Cotton Yoga Strap',
+    price: 15,
+    image: '/images/shop/yoga-strap.png',
+    description: 'Extend your reach and deepen your stretches with our soft cotton strap.',
+  },
+  {
+    id: 104,
+    name: 'Zen Meditation Cushion',
+    price: 45,
+    image: '/images/shop/meditation-cushion.png',
+    description: 'Ergonomically designed for comfortable and supported meditation.',
+  },
+];
+
+const addRecommendedToCart = (product: Omit<CartItem, 'quantity' | 'type'>) => {
+  cartStore.addItem({
+    ...product,
+    quantity: 1,
+    type: 'product'
+  });
+}
 </script>
 
 <style scoped>

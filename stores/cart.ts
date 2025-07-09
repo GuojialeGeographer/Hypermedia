@@ -1,15 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-
-export interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  image: string;
-  size?: string;
-}
+import type { CartItem } from '~/types';
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>([]);
@@ -33,7 +24,18 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  return { items, count, subtotal, addItem, removeItem };
+  function updateQuantity(itemId: number, quantity: number) {
+    if (quantity <= 0) {
+      removeItem(itemId);
+      return;
+    }
+    const item = items.value.find(i => i.id === itemId);
+    if (item) {
+      item.quantity = quantity;
+    }
+  }
+
+  return { items, count, subtotal, addItem, removeItem, updateQuantity };
 }, {
   persist: true,
 });

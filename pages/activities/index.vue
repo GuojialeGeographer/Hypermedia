@@ -2,329 +2,260 @@
   <div class="bg-white">
     <LayoutTheHeader />
     
-    <!-- 面包屑导航 -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-      <nav class="flex items-center text-lg sm:text-xl md:text-2xl space-x-2">
-        <NuxtLink to="/" class="text-[#4e7749] font-medium">Home</NuxtLink>
-        <span class="text-gray-500">/</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <nav class="flex items-center text-lg">
+        <NuxtLink to="/" class="text-[#4e7749] font-medium hover:underline">Home</NuxtLink>
+        <span class="text-gray-500 mx-2">/</span>
         <span class="text-gray-800 font-medium">Activities</span>
       </nav>
     </div>
 
-    <!-- 页面标题 -->
-    <div class="max-w-7xl mx-auto text-center mt-8 mb-12 sm:mb-16">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black">Activity Arrangement</h1>
+    <div class="max-w-7xl mx-auto text-center mt-4 mb-12">
+      <h1 class="text-4xl sm:text-5xl font-bold text-black">Activity Arrangement</h1>
     </div>
 
-    <!-- 活动安排网格 -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-12">
-      <!-- Monday -->
-      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-monday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/monday-mindfulness" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Monday Mindfulness</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Awakening the Mind</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Yoga & Meditation Discovery Class</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Beginners | Office Workers | Stress Relief Seekers
-              </p>
+      <div 
+        v-for="(activity, index) in activities"
+        :key="activity.slug"
+        class="flex flex-col lg:flex-row items-stretch gap-8"
+        :class="{ 'lg:flex-row-reverse': index % 2 !== 0 }"
+      >
+        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[450px]" :style="{ backgroundImage: `url(${activity.image})` }"></div>
+        
+        <div 
+          class="w-full lg:w-2/5 rounded-2xl p-8 relative flex flex-col justify-center"
+          :style="{ backgroundColor: activity.bgColor }"
+        >
+          <div class="absolute top-4 right-4">
+            <div v-if="activity.isFree" class="bg-white border border-[#4e7749] rounded-lg px-4 py-2">
+              <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-lg">Free Trial</NuxtLink>
             </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Ashley Lorenzo</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Guided breathwork & mindfulness meditation</li>
-              <li>• Gentle Hatha sequences to awaken and energize the body</li>
-              <li>• Focus on relaxation and mental clarity</li>
-              <li>• Present-moment awareness practices</li>
-            </ul>
+            <div v-if="!activity.isFree && !activity.isMembersOnly" class="bg-white border border-[#432963] rounded-lg px-4 py-2">
+              <NuxtLink to="/signup" class="text-[#36254a] font-bold text-lg">Register</NuxtLink>
+            </div>
           </div>
-        </div>
-      </div>
+          <div v-if="activity.isMembersOnly" class="absolute top-4 left-4 bg-[#4d4d99] text-white rounded-full px-4 py-2">
+            <span class="font-semibold">MEMBERS</span>
+          </div>
 
-      <!-- Tuesday -->
-      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-tuesday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/tuesday-therapy" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Tuesday Therapy</h3>
+          <div class="text-center mt-12">
+            <NuxtLink :to="`/activities/${activity.slug}`" class="hover:opacity-80">
+              <h3 class="font-semibold text-2xl mb-2" :style="{ color: activity.titleColor }">{{ activity.title }}</h3>
             </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Shoulder & Neck Healing</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Therapeutic Yoga Masterclass</p>
+            <h4 class="text-3xl font-normal mb-2" :style="{ color: activity.subtitleColor }">{{ activity.subtitle }}</h4>
+            <p class="text-xl mb-6" :style="{ color: activity.descriptionColor }">{{ activity.description }}</p>
             
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
+            <div class="w-full max-w-lg h-px mx-auto mb-6" :style="{ backgroundColor: activity.dividerColor }"></div>
             
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
+            <div class="mb-4">
+              <p class="text-lg leading-relaxed" :style="{ color: activity.textColor }">
                 <span class="font-semibold">👥 Suitable For:</span><br/>
-                Office workers | Neck/shoulder discomfort | Yoga therapy students
+                {{ activity.suitableFor }}
               </p>
             </div>
             
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Jivana Heyman</p>
+            <p class="text-lg mb-6" :style="{ color: activity.textColor }">🧘‍♀️ Instructor: {{ activity.instructor }}</p>
             
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Yoga props and alignment techniques for safe recovery</li>
-              <li>• Take-home techniques for daily tension relief</li>
-              <li>• Meditative poses for shoulder and neck release</li>
-              <li>• Restorative relaxation techniques</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Wednesday -->
-       <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-wednesday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/wednesday-fusion" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Wednesday Fusion</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Balance Between Stillness & Motion</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Fusion Flow</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Intermediate practitioners | Strength & flexibility seekers
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Georgia Weibel</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• A blend of Yin and Yang yoga: dynamic flows plus deep holds</li>
-              <li>• Strengthens endurance while encouraging deep tissue release</li>
-              <li>• Ideal for body-mind balance and injury prevention</li>
-              <li>• Combines active practice with restorative elements</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Thursday -->
-      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-thursday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/thursday-specialty" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Thursday Specialty</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Prenatal Yoga Private Experience</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Specialty Class</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Expectant mothers | Postnatal recovery
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Tamika Caston-Miller</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Safe movements tailored for pregnancy and postpartum</li>
-              <li>• Focus on pelvic floor recovery and breath awareness</li>
-              <li>• Emotional grounding techniques for motherhood</li>
-              <li>• Personalized guidance in a supportive environment</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Friday -->
-      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-friday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/friday-masterclass" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Friday Masterclass</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Introduction to Ashtanga Fundamentals</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Advanced Practice</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Intermediate to advanced students | Physical challenge seekers
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Vytas Baskauskas</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Introduction to the Primary Series of Ashtanga Yoga</li>
-              <li>• Synchronized breath, movement, and gaze (Drishti)</li>
-              <li>• Builds strength, stamina, and mental focus</li>
-              <li>• Traditional approach to dynamic yoga practice</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Saturday -->
-      <div class="flex flex-col lg:flex-row-reverse items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-saturday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/saturday-family" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Saturday Family Yoga</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Joyful Bonding & Movement</h4>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Parents & kids (ages 4-10) | Beginner-friendly
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Emily Carter</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Fun and interactive yoga sequences for parents and children</li>
-              <li>• Breathwork and mindfulness games for kids</li>
-              <li>• Gentle partner yoga to enhance bonding</li>
-              <li>• Introduction to relaxation techniques for families</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sunday -->
-      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-sunday.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/sunday-flow" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Sunday Slow Flow</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Deep Relaxation & Gentle Stretching</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">Restorative Yoga</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                All levels | Stress reduction seekers | Deep relaxation lovers
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Isabella Costa</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Gentle, slow-paced movements to release tension</li>
-              <li>• Use of props (bolsters, blankets) for full support</li>
-              <li>• Guided meditation for profound relaxation</li>
-              <li>• Perfect for winding down and preparing for the week ahead</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Special Event -->
-      <div class="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-8">
-        <div class="w-full lg:w-3/5 bg-cover bg-center rounded-lg min-h-[400px]" style="background-image: url('/images/activities/activity-special.png')"></div>
-        <div class="bg-[#fafaf5] w-full lg:w-2/5 rounded-2xl p-6 sm:p-8 relative">
-          <NuxtLink to="/login" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-4 py-2 hover:bg-gray-100 transition-colors">
-            <span class="text-[#2d5a27] font-bold text-base sm:text-lg">Free Trial</span>
-          </NuxtLink>
-          
-          <div class="mt-12">
-            <NuxtLink to="/activities/special-event" class="hover:opacity-80 transition-opacity">
-              <h3 class="text-[#336666] font-semibold text-xl mb-1 text-center hover:underline">Special Event</h3>
-            </NuxtLink>
-            <h4 class="text-[#4d4d4d] text-2xl font-normal mb-1 text-center">Community Outdoor Yoga</h4>
-            <p class="text-[#666666] text-lg mb-6 text-center">All-levels welcome!</p>
-            
-            <div class="w-full max-w-md h-px bg-[rgba(128,178,178,0.5)] mb-6 mx-auto"></div>
-            
-            <div class="text-center mb-4">
-              <p class="text-[#4d4d4d] text-base leading-relaxed">
-                <span class="font-semibold">👥 Suitable For:</span><br/>
-                Everyone! | Community lovers | Nature enthusiasts
-              </p>
-            </div>
-            
-            <p class="text-[#4d4d4d] text-base mb-6 text-center">🧘‍♀️ Instructor: Various</p>
-            
-            <h5 class="text-[#336666] font-semibold text-lg mb-3 text-center">✨ CLASS HIGHLIGHTS</h5>
-            <ul class="text-[#4d4d4d] text-base space-y-2 text-left max-w-md mx-auto">
-              <li>• Connect with nature and the community through yoga</li>
-              <li>• Energizing flow suitable for all experience levels</li>
-              <li>• A beautiful outdoor setting to enhance your practice</li>
-              <li>• A great way to meet fellow yoga enthusiasts</li>
+            <h5 class="font-semibold text-xl mb-3" :style="{ color: activity.titleColor }">✨ CLASS HIGHLIGHTS</h5>
+            <ul class="text-lg space-y-2 text-left max-w-md mx-auto" :style="{ color: activity.textColor }">
+              <li v-for="highlight in activity.highlights" :key="highlight">• {{ highlight }}</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
+    
     <LayoutTheFooter />
   </div>
 </template>
 
 <script setup lang="ts">
 useHead({
-  title: 'Activity Arrangement - Yoga Studio',
+  title: 'Yoga Activities - Class Schedule & Arrangement',
   meta: [
-    { name: 'description', content: 'Explore our weekly schedule of yoga classes and special events. Find the perfect session for you, from Monday Mindfulness to Sunday Slow Flow.' }
+    { name: 'description', content: 'Explore our weekly yoga activities, from Monday Mindfulness to Sunday Sunrise Vinyasa. Find the perfect class for your practice.' }
   ]
 })
+
+const activities = [
+  {
+    slug: 'monday-mindfulness',
+    title: 'MONDAY MINDFULNESS',
+    subtitle: 'Awakening the Mind',
+    description: 'Yoga & Meditation Discovery Class',
+    suitableFor: 'Beginners | Office Workers | Stress Relief Seekers',
+    instructor: 'Ashley Lorenzo',
+    highlights: [
+      'Guided breathwork & mindfulness meditation',
+      'Gentle Hatha sequences to awaken and energize the body',
+      'Focus on relaxation and mental clarity',
+      'Present-moment awareness practices'
+    ],
+    image: '/images/activities/activity-monday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'tuesday-therapy',
+    title: 'TUESDAY THERAPY',
+    subtitle: 'Shoulder & Neck Healing',
+    description: 'Therapeutic Yoga Masterclass',
+    suitableFor: 'Office workers | Neck/shoulder discomfort | Yoga therapy students',
+    instructor: 'Jivana Heyman',
+    highlights: [
+      'Yoga props and alignment techniques for safe recovery',
+      'Take-home techniques for daily tension relief',
+      'Meditative poses for shoulder and neck release',
+      'Restorative relaxation techniques'
+    ],
+    image: '/images/activities/activity-tuesday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'wednesday-fusion',
+    title: 'WEDNESDAY FUSION',
+    subtitle: 'Balance Between Stillness & Motion',
+    description: 'Fusion Flow',
+    suitableFor: 'Intermediate practitioners | Strength & flexibility seekers',
+    instructor: 'Georgia Weibel',
+    highlights: [
+      'A blend of Yin and Yang yoga: dynamic flows plus deep holds',
+      'Strengthens endurance while encouraging deep tissue release',
+      'Ideal for body-mind balance and injury prevention',
+      'Combines active practice with restorative elements'
+    ],
+    image: '/images/activities/activity-wednesday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'thursday-specialty',
+    title: 'THURSDAY SPECIALTY',
+    subtitle: 'Prenatal Yoga Private Experience',
+    description: 'Specialty Class',
+    suitableFor: 'Expectant mothers | Postnatal recovery',
+    instructor: 'Tamika Caston-Miller',
+    highlights: [
+      'Safe movements tailored for pregnancy and postpartum',
+      'Focus on pelvic floor recovery and breath awareness',
+      'Emotional grounding techniques for motherhood',
+      'Personalized guidance in a supportive environment'
+    ],
+    image: '/images/activities/activity-thursday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+    {
+    slug: 'friday-masterclass',
+    title: 'FRIDAY MASTERCLASS',
+    subtitle: 'Introduction to Ashtanga Fundamentals',
+    description: 'Advanced Practice',
+    suitableFor: 'Intermediate to advanced students | Physical challenge seekers',
+    instructor: 'Vytas Baskauskas',
+    highlights: [
+      'Introduction to the Primary Series of Ashtanga Yoga',
+      'Synchronized breath, movement, and gaze (Drishti)',
+      'Builds strength, stamina, and mental focus',
+      'Traditional approach to dynamic yoga practice'
+    ],
+    image: '/images/activities/activity-friday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'saturday-family',
+    title: 'SATURDAY FAMILY YOGA',
+    subtitle: 'Joyful Bonding & Movement',
+    description: '',
+    suitableFor: 'Parents & kids (ages 4-10) | Beginner-friendly',
+    instructor: 'Emily Carter',
+    highlights: [
+      'Fun and interactive yoga sequences for parents and children',
+      'Breathwork and mindfulness games for kids',
+      'Gentle partner yoga to enhance bonding',
+      'Introduction to relaxation techniques for families'
+    ],
+    image: '/images/activities/activity-saturday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'sunday-sunrise',
+    title: 'SUNDAY SUNRISE VINYASA',
+    subtitle: 'Energizing Flow to Start Your Day',
+    description: '',
+    suitableFor: 'All levels | Early risers | Outdoor enthusiasts',
+    instructor: 'Daniel Moreau',
+    highlights: [
+      'A dynamic flow to awaken the body and mind',
+      'Focus on breath-to-movement synchronization',
+      'Invigorating sun salutations to energize the day',
+      'Closing meditation with nature sounds'
+    ],
+    image: '/images/activities/activity-sunday.png',
+    isFree: true,
+    bgColor: '#fafaf5',
+    titleColor: '#336666',
+    subtitleColor: '#4d4d4d',
+    descriptionColor: '#666666',
+    textColor: '#4d4d4d',
+    dividerColor: 'rgba(128,178,178,0.5)',
+  },
+  {
+    slug: 'members-exclusive',
+    title: 'Deep Stretch & Sound Healing',
+    subtitle: '',
+    description: 'Yoga Immersion Experience',
+    suitableFor: 'Yoga members | Deep relaxation seekers',
+    instructor: 'Sophia Lin',
+    highlights: [
+      'Gentle Yin yoga with extended holds for deep muscle release',
+      'Sound bath healing with Tibetan singing bowls',
+      'Guided meditation to restore energy balance',
+      'Aromatherapy-infused ambiance for full sensory relaxation'
+    ],
+    image: '/images/activities/activity-special.png',
+    isMembersOnly: true,
+    bgColor: '#f2f2fa',
+    titleColor: '#4d4d99',
+    subtitleColor: '#4d4d66',
+    descriptionColor: '#666680',
+    textColor: '#4d4d66',
+    dividerColor: 'rgba(102,102,178,0.5)',
+  }
+]
 </script>
 
 <style scoped>

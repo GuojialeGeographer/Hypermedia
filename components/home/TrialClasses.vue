@@ -30,7 +30,7 @@
                 <span class="text-[12.9062px] text-gray-500 leading-[20px]">
                   60 min • All Levels
                 </span>
-                <NuxtLink to="/activities/1" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
+                <NuxtLink to="/classes" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
                   Learn More →
                 </NuxtLink>
               </div>
@@ -51,7 +51,7 @@
                 <span class="text-[12.9062px] text-gray-500 leading-[20px]">
                   60 min • All Levels
                 </span>
-                <NuxtLink to="/activities/2" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
+                <NuxtLink to="/classes" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
                   Learn More →
                 </NuxtLink>
               </div>
@@ -72,7 +72,7 @@
                 <span class="text-[12.9062px] text-gray-500 leading-[20px]">
                   60 min • Intermediate
                 </span>
-                <NuxtLink to="/activities/7" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
+                <NuxtLink to="/classes" class="text-[15.375px] text-[#2d5a27] leading-[24px] font-normal">
                   Learn More →
                 </NuxtLink>
               </div>

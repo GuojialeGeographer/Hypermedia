@@ -102,7 +102,6 @@ const getCourseLinkUrl = (course: Course) => {
 const bookCourse = (course: Course) => {
   if (!course) return;
 
-  // 为课程生成一个简单的数字ID，基于slug的哈希
   const courseId = course.slug.split('').reduce((hash, char) => hash + char.charCodeAt(0), 0);
 
   cartStore.addItem({
@@ -111,10 +110,10 @@ const bookCourse = (course: Course) => {
     price: course.price,
     quantity: 1,
     image: course.imageUrl,
-    description: course.courseName,
+    type: 'class'
   });
 
-  alert(`✅ "${course.title}" has been added to your cart!`);
+  navigateTo('/cart');
 };
 </script>
 

@@ -16,7 +16,7 @@
       <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
     </div>
     <button @click="addToCart" class="mt-2 w-full bg-[#2D5A27] text-white font-semibold py-2 px-4 rounded-md text-sm hover:bg-opacity-90 transition-colors">
-      Book
+      Add to Cart
     </button>
   </div>
 </template>
@@ -29,17 +29,17 @@ const props = defineProps<{
   product: Product;
 }>();
 
-const { addItem } = useCartStore();
+const cartStore = useCartStore();
 
 const addToCart = () => {
-  addItem({
+  cartStore.addItem({
     id: props.product.id,
     name: props.product.name,
     price: parseFloat(props.product.price.replace('€', '')),
     quantity: 1,
     image: props.product.imageSrc,
-    description: props.product.color,
+    type: 'product'
   });
-  alert(`${props.product.name} has been added to your cart!`);
+  navigateTo('/cart');
 };
 </script> 

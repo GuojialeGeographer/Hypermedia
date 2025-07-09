@@ -322,23 +322,45 @@ const activityData: Record<string, any> = {
       'Guided by a certified sound healing practitioner'
     ],
     price: 35
+  },
+  'special-workshop': {
+    title: 'Specialty Workshop',
+    subtitle: 'Deepen Your Practice',
+    description: 'In-depth Yoga Exploration',
+    instructor: 'Guest Teacher',
+    image: '/images/activities/activity-special.png',
+    isFree: false,
+    duration: '120 min',
+    location: 'Workshop Space',
+    schedule: 'Check Schedule for Dates',
+    intensity: 'Advanced',
+    capacity: 'Max 20 people',
+    suitableFor: 'Experienced practitioners and yoga teachers',
+    highlights: [
+      'Themed workshops focusing on specific aspects of yoga',
+      'Opportunities to learn from renowned guest instructors',
+      'Advanced asanas, philosophy, and teaching methodologies',
+      'Interactive and hands-on learning environment'
+    ],
+    price: 75
   }
-}
+};
 
-const activity = computed(() => activityData[activityId])
+const activity = activityData[activityId];
 
 const addToCart = () => {
-  if (activity.value) {
-    cartStore.addItem({
-      id: Date.now(),
-      name: activity.value.title,
-      price: activity.value.price || 0,
-      quantity: 1,
-      image: activity.value.image,
-      description: activity.value.subtitle,
-    });
-    alert(`${activity.value.title} has been added to your cart!`);
-  }
+  if (!activity) return;
+
+  cartStore.addItem({
+    id: Date.now(), // Use a temporary ID for client-side only activities
+    name: activity.title,
+    price: activity.price || 0,
+    image: activity.image,
+    quantity: 1,
+    type: 'class'
+  });
+
+  navigateTo('/cart');
 };
 
 useHead({

@@ -21,7 +21,7 @@
                     <div>
                       <div class="flex justify-between text-base font-medium text-gray-900">
                         <h3>
-                          <a :href="item.type === 'class' ? `/activities/${item.id}`: `/shop/${item.id}`">{{ item.name }}</a>
+                          <NuxtLink :to="item.type === 'class' ? `/activities/${item.id}`: `/shop/${item.id}`">{{ item.name }}</NuxtLink>
                         </h3>
                         <p class="ml-4">{{ formatCurrency(item.price) }}</p>
                       </div>
@@ -103,7 +103,7 @@
 
 <script setup lang="ts">
 import { useCartStore } from '~/stores/cart'
-import type { Product, Activity } from '~/types'
+import type { Product, Activity, CartItem } from '~/types'
 
 interface RecommendedItem {
   id: number;
@@ -118,16 +118,16 @@ interface RecommendedItem {
 const cartStore = useCartStore()
 
 const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+  return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount)
 }
 
 const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '-and-');
 
 // Fetch both products and activities
-const { data: products } = await useFetch<Product[]>('/api/products');
+const { data: products } = await useFetch<Product[]>('/api/products?limit=all');
 const { data: activities } = await useFetch<Activity[]>('/api/activities');
 
-const recommendedItems = computed(() => {
+const recommendedItems = computed((): RecommendedItem[] => {
   const combinedList: RecommendedItem[] = [];
 
   if (products.value) {
@@ -135,10 +135,10 @@ const recommendedItems = computed(() => {
       combinedList.push({
         id: p.id,
         name: p.name,
-        price: parseFloat(p.price.replace('€', '')),
-        image: p.imageSrc,
+        price: p.price, // Use number directly
+        image: p.image, // Use correct image field
         description: p.color, // Using color as description for products
-        href: p.href,
+        href: `/shop/${p.id}`,
         type: 'product',
       });
     });
@@ -152,7 +152,7 @@ const recommendedItems = computed(() => {
         price: a.price || 0,
         image: a.image_url,
         description: a.description,
-        href: `/activities/${slugify(a.name)}`,
+        href: `/activities/${a.slug || slugify(a.name)}`,
         type: 'class',
       });
     });
@@ -163,14 +163,16 @@ const recommendedItems = computed(() => {
 });
 
 const addRecommendedToCart = (item: RecommendedItem) => {
-  cartStore.addItem({
+  const cartItem: CartItem = {
     id: item.id,
     name: item.name,
     price: item.price,
     image: item.image,
     quantity: 1,
     type: item.type,
-  });
+  };
+  cartStore.addItem(cartItem);
+  alert(`${item.name} has been added to the cart.`);
 }
 </script>
 

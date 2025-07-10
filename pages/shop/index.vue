@@ -6,7 +6,7 @@
     <div class="relative h-[600px] bg-cover bg-center" style="background-image: url('/images/hero/hero-bg-2.png');">
       <div class="absolute inset-0 bg-black bg-opacity-20 flex flex-col justify-center items-center text-center text-white p-4">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4 max-w-2xl">Enjoy 30 Days of Free Yoga Classes with Your Purchase</h1>
-        <NuxtLink to="/shop/apparel" class="mt-6 inline-block bg-[#e8efe9] text-gray-900 font-semibold py-3 px-10 rounded-full text-base hover:bg-opacity-90 transition-all">
+        <NuxtLink to="/shop/apparel" class="mt-6 inline-block bg-[#2d5a27] text-white font-semibold py-3 px-10 rounded-full text-base hover:bg-opacity-90 transition-all">
           SHOP THE COLLECTION
         </NuxtLink>
       </div>

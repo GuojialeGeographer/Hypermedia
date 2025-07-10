@@ -57,7 +57,7 @@
             </div>
 
             <div class="mt-10">
-              <NuxtLink to="/checkout" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
+              <NuxtLink to="/login" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
                 Checkout
               </NuxtLink>
             </div>
@@ -135,10 +135,10 @@ const recommendedItems = computed((): RecommendedItem[] => {
       combinedList.push({
         id: p.id,
         name: p.name,
-        price: p.price, // Use number directly
-        image: p.image, // Use correct image field
-        description: p.color, // Using color as description for products
-        href: `/shop/${p.id}`,
+        price: p.price,
+        image: p.image,
+        description: p.color,
+        href: `/shop/${slugify(p.name)}`,
         type: 'product',
       });
     });
@@ -149,10 +149,10 @@ const recommendedItems = computed((): RecommendedItem[] => {
       combinedList.push({
         id: a.id,
         name: a.name,
-        price: a.price || 0,
+        price: a.price,
         image: a.image_url,
         description: a.description,
-        href: `/activities/${a.slug || slugify(a.name)}`,
+        href: `/activities/${a.slug}`,
         type: 'class',
       });
     });
@@ -170,9 +170,9 @@ const addRecommendedToCart = (item: RecommendedItem) => {
     image: item.image,
     quantity: 1,
     type: item.type,
+    href: item.href,
   };
   cartStore.addItem(cartItem);
-  alert(`${item.name} has been added to the cart.`);
 }
 </script>
 

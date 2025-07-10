@@ -10,8 +10,8 @@ export interface Teacher {
 }
 
 export interface Activity {
-  id?: number;
-  name?: string;
+  id: number;
+  name: string;
   slug: string;
   title: string;
   subtitle: string;
@@ -30,7 +30,7 @@ export interface Activity {
   textColor: string;
   dividerColor: string;
   time: string;
-  image_url?: string;
+  image_url: string;
   long_description?: string;
   teacher_ids?: number[];
   duration?: number;
@@ -42,7 +42,7 @@ export interface Activity {
   intensity?: string;
   capacity?: number;
   is_featured?: boolean;
-  price?: number;
+  price: number;
 }
 
 export interface CartItem {
@@ -52,6 +52,7 @@ export interface CartItem {
   image: string;
   quantity: number;
   type: 'class' | 'product';
+  href: string;
   description?: string;
   size?: string;
 }

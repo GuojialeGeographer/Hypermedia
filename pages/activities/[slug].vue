@@ -32,8 +32,11 @@
             class="w-full lg:w-2/5 rounded-2xl p-8 relative flex flex-col justify-center"
             :style="{ backgroundColor: activity.bgColor }"
           >
-            <div v-if="activity.isFree" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-6 py-2">
-              <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-xl">Free Trial</NuxtLink>
+            <div v-if="activity.isFree" class="absolute top-8 right-2 bg-white border border-[#4e7749] rounded-lg px-4 py-1">
+              <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-base">Free Trial</NuxtLink>
+            </div>
+            <div v-else-if="activity.isMembersOnly" class="absolute top-8 right-2 bg-white border border-[#432963] rounded-lg px-4 py-1">
+              <NuxtLink to="/subscription" class="text-[#36254a] font-bold text-base">Register</NuxtLink>
             </div>
             
             <div class="text-left max-w-md mx-auto">

@@ -10,25 +10,39 @@ export interface Teacher {
 }
 
 export interface Activity {
-  id: number;
-  name: string;
-  slug?: string;
-  image_url: string;
+  id?: number;
+  name?: string;
+  slug: string;
+  title: string;
+  subtitle: string;
   description: string;
-  long_description: string;
-  teacher_ids: number[];
-  duration: number;
-  location: string;
-  schedule: {
+  suitableFor: string;
+  instructor: string;
+  highlights: string[];
+  goal: string;
+  image: string;
+  isFree: boolean;
+  isMembersOnly: boolean;
+  bgColor: string;
+  titleColor: string;
+  subtitleColor: string;
+  descriptionColor: string;
+  textColor: string;
+  dividerColor: string;
+  time: string;
+  image_url?: string;
+  long_description?: string;
+  teacher_ids?: number[];
+  duration?: number;
+  location?: string;
+  schedule?: {
     day: string;
     time: string;
   };
-  intensity: string;
-  capacity: number;
-  is_featured: boolean;
+  intensity?: string;
+  capacity?: number;
+  is_featured?: boolean;
   price?: number;
-  suitableFor?: string;
-  highlights?: string[];
 }
 
 export interface CartItem {

@@ -1,114 +1,93 @@
 <template>
   <div class="bg-white">
     <LayoutTheHeader />
-
-    <main v-if="activity" class="py-12 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Breadcrumb -->
-        <nav class="flex items-center text-base text-gray-500 mb-6">
-          <NuxtLink to="/" class="hover:text-green-700">Home</NuxtLink>
-          <span class="mx-2">/</span>
-          <NuxtLink to="/activities" class="hover:text-green-700">Activities</NuxtLink>
-          <span class="mx-2">/</span>
-          <span class="text-gray-700">{{ activity.name }}</span>
+    
+    <div v-if="activity" class="font-inter">
+      <!-- Breadcrumb -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <nav class="flex items-center text-lg">
+          <NuxtLink to="/" class="text-[#4e7749] font-medium hover:underline">Home</NuxtLink>
+          <span class="text-gray-500 mx-2">/</span>
+          <NuxtLink to="/activities" class="text-[#4e7749] font-medium hover:underline">Activities</NuxtLink>
+          <span class="text-gray-500 mx-2">/</span>
+          <span class="text-gray-800 font-medium">{{ activity.title }}</span>
         </nav>
-        
-        <!-- Title Section -->
-        <div class="mb-8">
-          <div class="flex items-center gap-4">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">{{ activity.name }}</h1>
-            <span v-if="activity.price !== undefined && activity.price > 0" class="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800 border border-green-300">
-              Free Trial
-            </span>
+      </div>
+
+      <!-- Page Title -->
+      <div class="max-w-7xl mx-auto text-center mt-4 mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold text-black">Activity Arrangement</h1>
+      </div>
+
+      <!-- Activity Details -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div class="flex flex-col lg:flex-row items-stretch gap-8">
+          <!-- Image on the left -->
+          <div class="w-full lg:w-3/5">
+            <div class="bg-cover bg-center rounded-lg min-h-[600px] h-full" :style="{ backgroundImage: `url(${activity.image})` }"></div>
           </div>
-          <p class="mt-2 text-xl text-gray-600">{{ activity.description }}</p>
-        </div>
-
-
-        <!-- Main Content Grid -->
-        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
           
-          <!-- Left Column: Image -->
-          <div class="lg:col-span-2 rounded-lg overflow-hidden">
-            <img :src="activity.image_url" :alt="activity.name" class="w-full h-auto object-cover">
-          </div>
+          <!-- Details on the right -->
+          <div 
+            class="w-full lg:w-2/5 rounded-2xl p-8 relative flex flex-col justify-center"
+            :style="{ backgroundColor: activity.bgColor }"
+          >
+            <div v-if="activity.isFree" class="absolute top-4 right-4 bg-white border border-[#4e7749] rounded-lg px-6 py-2">
+              <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-xl">Free Trial</NuxtLink>
+            </div>
+            
+            <div class="text-left max-w-md mx-auto">
+              <h3 class="font-semibold text-2xl mb-1" :style="{ color: activity.titleColor }">{{ activity.title }}</h3>
+              <h4 class="text-3xl font-normal mb-2" :style="{ color: activity.subtitleColor }">{{ activity.subtitle }}</h4>
+              <p class="text-xl mb-4" :style="{ color: activity.descriptionColor }">{{ activity.description }}</p>
 
-          <!-- Right Column: Details Card -->
-          <div class="mt-8 lg:mt-0 p-6 bg-white rounded-lg shadow-md h-fit">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Class Details</h2>
-            <div class="space-y-4 text-base text-gray-700">
-              <div class="flex justify-between"><span>Instructor:</span> <span class="font-medium text-right">{{ getTeacherNames(activity.teacher_ids) }}</span></div>
-              <div class="flex justify-between"><span>Duration:</span> <span class="font-medium">{{ activity.duration }} min</span></div>
-              <div class="flex justify-between"><span>Location:</span> <span class="font-medium">{{ activity.location }}</span></div>
-              <div class="flex justify-between"><span>Schedule:</span> <span class="font-medium text-right">{{ activity.schedule.day }} {{ activity.schedule.time }}</span></div>
-              <div class="flex justify-between"><span>Intensity:</span> <span class="font-medium">{{ activity.intensity }}</span></div>
-              <div class="flex justify-between"><span>Capacity:</span> <span class="font-medium">Max {{ activity.capacity }} people</span></div>
-            </div>
-            <div class="mt-8">
-              <button class="w-full bg-[#2d5a27] text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-opacity-90 transition">
-                Book
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Lower Section: Perfect For & What You'll Experience -->
-        <div class="mt-12 lg:grid lg:grid-cols-3 lg:gap-8">
-          <div class="lg:col-span-2">
-            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">Perfect For</h3>
-              <p class="text-gray-700">{{ activity.suitableFor }}</p>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">What You'll Experience</h3>
-              <ul v-if="activity.highlights" class="list-disc list-inside space-y-2 text-gray-700">
-                <li v-for="highlight in activity.highlights" :key="highlight">{{ highlight }}</li>
+              <p class="text-lg mb-2" :style="{ color: activity.textColor }">🕙 Time: {{ activity.time }}</p>
+              <p class="text-lg mb-2" :style="{ color: activity.textColor }">👥 Suitable For: {{ activity.suitableFor }}</p>
+              <p class="text-lg mb-6" :style="{ color: activity.textColor }">🧘‍♀️ Instructor: {{ activity.instructor }}</p>
+              
+              <div class="w-full h-px my-6" :style="{ backgroundColor: activity.dividerColor }"></div>
+              
+              <h5 class="font-semibold text-xl mb-3" :style="{ color: activity.titleColor }">✨ CLASS HIGHLIGHTS</h5>
+              <ul class="text-lg space-y-2 mb-6" :style="{ color: activity.textColor }">
+                <li v-for="highlight in activity.highlights" :key="highlight">• {{ highlight }}</li>
               </ul>
+
+              <h5 class="font-semibold text-xl mb-3" :style="{ color: activity.titleColor }">🎯 CLASS GOAL</h5>
+              <p class="text-lg" :style="{ color: activity.textColor }">{{ activity.goal }}</p>
             </div>
           </div>
         </div>
       </div>
-    </main>
-
-    <div v-else-if="pending" class="text-center py-24">
-      <p>Loading activity...</p>
     </div>
     
     <div v-else class="text-center py-24">
-      <p class="text-red-500">Could not load the activity. Please try again later.</p>
+      <h1 class="text-3xl font-bold text-gray-800">Activity not found</h1>
+      <p class="text-gray-600 mt-4">The activity you are looking for does not exist.</p>
+      <NuxtLink to="/activities" class="mt-8 inline-block bg-[#2d5a27] text-white px-8 py-3 rounded-lg hover:bg-[#4e7749]">
+        Back to Activities
+      </NuxtLink>
     </div>
-
+    
     <LayoutTheFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Activity, Teacher } from '~/types';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { activities } from '~/composables/useActivities';
 
 const route = useRoute();
 const slug = route.params.slug as string;
 
-// Fetch activity details
-const { data: activity, pending, error } = await useFetch<Activity>(`/api/activities/${slug}`);
-
-// Fetch all teachers to map IDs to names
-const { data: teachers } = await useFetch<Teacher[]>('/api/teachers');
-
-const getTeacherNames = (ids: number[]) => {
-  if (!teachers.value || !ids) return 'N/A';
-  return ids.map(id => teachers.value?.find(t => t.id === id)?.name).filter(Boolean).join(', ');
-};
-
-
-if (error.value && !activity.value) {
-  console.error('Failed to fetch activity:', error.value);
-}
+const activity = computed(() => {
+  return activities.find(a => a.slug === slug);
+});
 
 useHead({
-  title: computed(() => activity.value ? `${activity.value.name} - Yoga Activity` : 'Activity Details'),
+  title: activity.value ? `${activity.value.title} - Yoga Activity` : 'Activity Not Found',
   meta: [
-    { name: 'description', content: computed(() => activity.value?.description || 'Details about our yoga activities.') }
+    { name: 'description', content: activity.value?.description || 'Find details about our yoga activities.' }
   ]
 });
 </script> 

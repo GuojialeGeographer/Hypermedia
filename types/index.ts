@@ -46,15 +46,13 @@ export interface Activity {
 }
 
 export interface CartItem {
-  id: number;
+  id: number | string;
   name: string;
   price: number;
   image: string;
   quantity: number;
   type: 'class' | 'product';
   href: string;
-  description?: string;
-  size?: string;
 }
 
 export interface Product {

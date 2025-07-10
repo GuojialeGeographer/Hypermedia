@@ -4,73 +4,76 @@
     <div class="container mx-auto px-4 py-8">
       <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Your Cart</h1>
           
-          <div class="mt-12">
-            <section aria-labelledby="cart-heading">
-              <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
+      <div class="mt-12">
+        <!-- Classes Section -->
+        <section aria-labelledby="classes-heading">
+          <h2 id="classes-heading" class="text-2xl font-semibold text-gray-800 mb-4">Classes & Workshops</h2>
+          <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+            <li v-if="cartStore.classItems.length === 0" class="text-center py-12">
+              <p class="text-gray-500">You have no classes in your cart.</p>
+            </li>
+            <CartItem v-for="item in cartStore.classItems" :key="item.id" :item="item" />
+          </ul>
+        </section>
 
-              <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-                <li v-if="cartStore.items.length === 0" class="text-center py-12">
-                  <p class="text-gray-500">Your cart is empty.</p>
-                </li>
-                <li v-else v-for="item in cartStore.items" :key="item.id" class="flex py-6">
-                  <div class="flex-shrink-0">
-                    <img :src="item.image" :alt="item.name" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                  </div>
+        <!-- Classes Summary -->
+        <section v-if="cartStore.classItems.length > 0" aria-labelledby="classes-summary-heading" class="mt-10">
+          <h2 id="classes-summary-heading" class="sr-only">Classes Order summary</h2>
+          <div>
+            <dl class="space-y-4">
+              <div class="flex items-center justify-between">
+                <dt class="text-base font-medium text-gray-900">Subtotal (Classes)</dt>
+                <dd class="ml-4 text-base font-medium text-gray-900">{{ formatCurrency(cartStore.classSubtotal) }}</dd>
+              </div>
+            </dl>
+          </div>
+          <div class="mt-10">
+            <NuxtLink to="/login" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
+              Checkout Classes
+            </NuxtLink>
+          </div>
+        </section>
 
-                  <div class="ml-4 flex flex-1 flex-col">
-                    <div>
-                      <div class="flex justify-between text-base font-medium text-gray-900">
-                        <h3>
-                          <NuxtLink :to="item.type === 'class' ? `/activities/${item.id}`: `/shop/${item.id}`">{{ item.name }}</NuxtLink>
-                        </h3>
-                        <p class="ml-4">{{ formatCurrency(item.price) }}</p>
-                      </div>
-                    </div>
-                    <div class="flex flex-1 items-end justify-between text-sm">
-                      <div class="flex items-center">
-                        <button @click="cartStore.updateQuantity(item.id, item.quantity - 1)" class="text-gray-500 hover:text-gray-700 disabled:opacity-50" :disabled="item.quantity <= 1">-</button>
-                        <p class="text-gray-500 mx-2">{{ item.quantity }}</p>
-                        <button @click="cartStore.updateQuantity(item.id, item.quantity + 1)" class="text-gray-500 hover:text-gray-700">+</button>
-                      </div>
+        <hr class="my-16 border-gray-300">
 
-                      <div class="flex">
-                        <button @click="cartStore.removeItem(item.id)" type="button" class="font-medium text-[#4e7749] hover:text-[#2d5a27]">Remove</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </section>
+        <!-- Apparel Section -->
+        <section aria-labelledby="apparel-heading">
+          <h2 id="apparel-heading" class="text-2xl font-semibold text-gray-800 mb-4">Apparel & Gear</h2>
+          <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+            <li v-if="cartStore.productItems.length === 0" class="text-center py-12">
+              <p class="text-gray-500">You have no apparel in your cart.</p>
+            </li>
+            <CartItem v-for="item in cartStore.productItems" :key="item.id" :item="item" />
+          </ul>
+        </section>
 
-          <!-- Order summary -->
-          <section aria-labelledby="summary-heading" class="mt-10">
-            <h2 id="summary-heading" class="sr-only">Order summary</h2>
+        <!-- Apparel Summary -->
+        <section v-if="cartStore.productItems.length > 0" aria-labelledby="apparel-summary-heading" class="mt-10">
+          <h2 id="apparel-summary-heading" class="sr-only">Apparel Order summary</h2>
+          <div>
+            <dl class="space-y-4">
+              <div class="flex items-center justify-between">
+                <dt class="text-base font-medium text-gray-900">Subtotal (Apparel)</dt>
+                <dd class="ml-4 text-base font-medium text-gray-900">{{ formatCurrency(cartStore.productSubtotal) }}</dd>
+              </div>
+            </dl>
+            <p class="mt-1 text-sm text-gray-500">Shipping and taxes will be calculated at checkout.</p>
+          </div>
+          <div class="mt-10">
+            <NuxtLink to="/login" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
+              Checkout Apparel
+            </NuxtLink>
+          </div>
+        </section>
 
-            <div>
-              <dl class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <dt class="text-base font-medium text-gray-900">Subtotal</dt>
-                  <dd class="ml-4 text-base font-medium text-gray-900">{{ formatCurrency(cartStore.subtotal) }}</dd>
-                </div>
-              </dl>
-              <p class="mt-1 text-sm text-gray-500">Shipping and taxes will be calculated at checkout.</p>
-            </div>
-
-            <div class="mt-10">
-              <NuxtLink to="/login" class="w-full bg-[#2d5a27] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#4e7749] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4e7749]">
-                Checkout
-              </NuxtLink>
-            </div>
-
-            <div class="mt-6 text-center text-sm">
-              <p>
-                or <NuxtLink to="/shop" class="font-medium text-[#4e7749] hover:text-[#2d5a27]">Continue Shopping<span aria-hidden="true"> &rarr;</span></NuxtLink>
-              </p>
-            </div>
-          </section>
-
-          <!-- Recommended products -->
-          <section aria-labelledby="related-products-heading" class="mt-16">
+        <div v-if="cartStore.items.length === 0" class="mt-6 text-center text-sm">
+          <p>
+            or <NuxtLink to="/shop" class="font-medium text-[#4e7749] hover:text-[#2d5a27]">Continue Shopping<span aria-hidden="true"> &rarr;</span></NuxtLink>
+          </p>
+        </div>
+        
+        <!-- Recommended products -->
+        <section aria-labelledby="related-products-heading" class="mt-16">
             <h2 id="related-products-heading" class="text-lg font-medium text-gray-900">You may also like&hellip;</h2>
 
             <div v-if="recommendedProducts.length > 0" class="mt-12">
@@ -106,7 +109,8 @@
 
 <script setup lang="ts">
 import { useCartStore } from '~/stores/cart'
-import type { Product, Activity, CartItem } from '~/types'
+import type { Product, Activity, CartItem as CartItemType } from '~/types'
+import CartItem from '~/components/cart/CartItem.vue'
 
 interface RecommendedItem {
   id: number;
@@ -144,7 +148,7 @@ const recommendedProducts = computed((): RecommendedItem[] => {
 });
 
 const addRecommendedToCart = (item: RecommendedItem) => {
-  const cartItem: CartItem = {
+  const cartItem: CartItemType = {
     id: item.id,
     name: item.name,
     price: item.price,

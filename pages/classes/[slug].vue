@@ -84,7 +84,8 @@ const addToCart = () => {
       price: course.value.price,
       quantity: 1,
       image: course.value.imageUrl,
-      description: course.value.courseName,
+      type: 'class',
+      href: `/classes/${slug}`
     });
     alert(`✅ "${course.value.title}" has been added to your cart!`);
   }

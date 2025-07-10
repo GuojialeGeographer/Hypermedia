@@ -15,6 +15,13 @@ const activities: Activity[] = [
     capacity: 20,
     is_featured: true,
     price: 98,
+    suitableFor: 'Newcomers, those seeking foundational knowledge',
+    highlights: [
+      'Scientifically structured sequences',
+      'Emphasis on breath control (Pranayama)',
+      'Proper body alignment techniques',
+      'Builds a strong foundation for further practice'
+    ],
   },
   {
     id: 2,
@@ -30,6 +37,13 @@ const activities: Activity[] = [
     capacity: 15,
     is_featured: true,
     price: 118,
+    suitableFor: 'Beginners ready to flow, all levels welcome',
+    highlights: [
+      'Introduction to Vinyasa flow',
+      'Modified sun salutations',
+      'Linking breath with movement',
+      'Smooth transitions between poses'
+    ],
   },
   {
     id: 3,
@@ -45,6 +59,13 @@ const activities: Activity[] = [
     capacity: 18,
     is_featured: false,
     price: 98,
+    suitableFor: 'All levels, especially those looking for a calm and classic practice',
+    highlights: [
+      'Focus on basic poses (Asanas)',
+      'Detailed breathing exercises',
+      'Aligns and calms body and mind',
+      'Enhances body awareness'
+    ],
   },
   {
     id: 4,
@@ -60,6 +81,13 @@ const activities: Activity[] = [
     capacity: 12,
     is_featured: true,
     price: 128,
+    suitableFor: 'Anyone needing to de-stress and relax deeply',
+    highlights: [
+      'Use of props for full body support',
+      'Gentle, prolonged stretching',
+      'Activates the parasympathetic nervous system',
+      'Promotes release of chronic tension'
+    ],
   },
   {
     id: 5,
@@ -75,6 +103,13 @@ const activities: Activity[] = [
     capacity: 15,
     is_featured: false,
     price: 168,
+    suitableFor: 'Intermediate to advanced students seeking a challenge',
+    highlights: [
+      'Follows a set series of postures',
+      'Synchronizes breath with movement (Vinyasa)',
+      'Builds internal heat to purify the body',
+      'Enhances strength, stamina, and flexibility'
+    ],
   },
   {
     id: 6,
@@ -90,6 +125,13 @@ const activities: Activity[] = [
     capacity: 20,
     is_featured: true,
     price: 148,
+    suitableFor: 'All levels, athletes, and those with tight connective tissues',
+    highlights: [
+      'Slow-paced, meditative practice',
+      'Targets deep connective tissues (fascia, ligaments)',
+      'Poses held for longer periods (3-5 minutes)',
+      'Improves flexibility and joint mobility'
+    ],
   },
   {
     id: 7,
@@ -105,6 +147,13 @@ const activities: Activity[] = [
     capacity: 10,
     is_featured: true,
     price: 128,
+    suitableFor: 'Expectant mothers in all trimesters',
+    highlights: [
+      'Safe for pregnancy',
+      'Alleviates common pregnancy discomforts',
+      'Breathing techniques for labor',
+      'Strengthens pelvic floor'
+    ],
   },
   {
     id: 8,
@@ -120,6 +169,13 @@ const activities: Activity[] = [
     capacity: 15,
     is_featured: true,
     price: 168,
+    suitableFor: 'Fitness enthusiasts, experienced yogis',
+    highlights: [
+      'Vigorous, fitness-based Vinyasa style',
+      'Builds cardiovascular health',
+      'Tones the entire body',
+      'A powerful workout for body and mind'
+    ],
   },
   {
     id: 9,
@@ -136,6 +192,13 @@ const activities: Activity[] = [
     capacity: 25,
     is_featured: true,
     price: 158,
+    suitableFor: 'All levels, early risers, outdoor enthusiasts',
+    highlights: [
+      'A dynamic flow to awaken the body and mind',
+      'Focus on breath-to-movement synchronization',
+      'Invigorating sun salutations to energize the day',
+      'Closing meditation with nature sounds'
+    ],
   },
   {
     id: 10,
@@ -152,6 +215,13 @@ const activities: Activity[] = [
     capacity: 15,
     is_featured: true,
     price: 0, // Free for members
+    suitableFor: 'Yoga members, deep relaxation seekers',
+    highlights: [
+      'Gentle Yin yoga with extended holds',
+      'Sound bath healing with Tibetan singing bowls',
+      'Guided meditation to restore energy balance',
+      'Aromatherapy-infused for sensory relaxation'
+    ],
   }
 ]
 

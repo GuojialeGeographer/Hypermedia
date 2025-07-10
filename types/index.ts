@@ -27,6 +27,8 @@ export interface Activity {
   capacity: number;
   is_featured: boolean;
   price?: number;
+  suitableFor?: string;
+  highlights?: string[];
 }
 
 export interface CartItem {

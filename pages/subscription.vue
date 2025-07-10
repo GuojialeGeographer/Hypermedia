@@ -56,9 +56,6 @@
           </p>
         </div>
         
-        <button class="bg-[#D9E5D9] text-[#4D4D4D] font-medium text-xl rounded-lg px-8 py-4">
-          Watch trailer
-        </button>
       </div>
 
       <!-- Right Panel -->
@@ -79,6 +76,10 @@
             <input type="checkbox" id="newsletter" class="h-5 w-5 border border-[#B3B3B3] rounded-sm">
             <label for="newsletter" class="ml-2 text-lg text-[#4D4D4D]">I agree to receive newsletters and product updates from YogaWorks</label>
           </div>
+
+          <button class="flex w-full h-16 justify-center items-center gap-2.5 px-6 py-4 my-6 rounded-lg bg-[#FF994D] text-white text-xl font-medium hover:bg-orange-500 transition-colors">
+            Start Free Trial
+          </button>
 
           <p class="text-3xl font-semibold text-[#1A1A1A] my-6">Payment details</p>
           <div class="grid grid-cols-2 gap-x-6 gap-y-4">

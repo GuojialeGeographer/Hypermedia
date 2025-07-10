@@ -73,26 +73,29 @@
           <section aria-labelledby="related-products-heading" class="mt-16">
             <h2 id="related-products-heading" class="text-lg font-medium text-gray-900">You may also like&hellip;</h2>
 
-            <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-              <div v-for="item in recommendedItems" :key="`${item.type}-${item.id}`" class="group relative flex flex-col">
-                <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                  <img :src="item.image" :alt="item.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
-                </div>
-                <div class="mt-4 flex flex-col flex-grow">
-                  <div class="flex-grow">
-                    <h3 class="text-sm text-gray-700">
-                      <NuxtLink :to="item.href">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        {{ item.name }}
-                      </NuxtLink>
-                    </h3>
-                    <p class="mt-1 text-sm text-gray-500 min-h-[40px] line-clamp-2">{{ item.description }}</p>
+            <div v-if="recommendedProducts.length > 0" class="mt-12">
+              <h3 class="text-md font-medium text-gray-800">Apparel & Gear</h3>
+              <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <div v-for="item in recommendedProducts" :key="`${item.type}-${item.id}`" class="group relative flex flex-col">
+                  <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                    <img :src="item.image" :alt="item.name" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                   </div>
-                  <div class="flex justify-between items-end">
-                    <p class="text-sm font-medium text-gray-900">{{ formatCurrency(item.price) }}</p>
+                  <div class="mt-4 flex flex-col flex-grow">
+                    <div class="flex-grow">
+                      <h3 class="text-sm text-gray-700">
+                        <NuxtLink :to="item.href">
+                          <span aria-hidden="true" class="absolute inset-0"></span>
+                          {{ item.name }}
+                        </NuxtLink>
+                      </h3>
+                      <p class="mt-1 text-sm text-gray-500 min-h-[40px] line-clamp-2">{{ item.description }}</p>
+                    </div>
+                    <div class="flex justify-between items-end">
+                      <p class="text-sm font-medium text-gray-900">{{ formatCurrency(item.price) }}</p>
+                    </div>
                   </div>
+                  <button @click="addRecommendedToCart(item)" class="mt-4 w-full bg-white border border-[#4e7749] text-[#2d5a27] rounded-md py-2 px-4 hover:bg-gray-100">Add to cart</button>
                 </div>
-                <button @click="addRecommendedToCart(item)" class="mt-4 w-full bg-white border border-[#4e7749] text-[#2d5a27] rounded-md py-2 px-4 hover:bg-gray-100">Add to cart</button>
               </div>
             </div>
           </section>
@@ -123,43 +126,21 @@ const formatCurrency = (amount: number) => {
 
 const slugify = (text: string) => text.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '-and-');
 
-// Fetch both products and activities
+// Fetch products
 const { data: products } = await useFetch<Product[]>('/api/products?limit=all');
-const { data: activities } = await useFetch<Activity[]>('/api/activities');
 
-const recommendedItems = computed((): RecommendedItem[] => {
-  const combinedList: RecommendedItem[] = [];
-
-  if (products.value) {
-    products.value.forEach(p => {
-      combinedList.push({
-        id: p.id,
-        name: p.name,
-        price: p.price,
-        image: p.image,
-        description: p.color,
-        href: `/shop/${slugify(p.name)}`,
-        type: 'product',
-      });
-    });
-  }
-
-  if (activities.value) {
-    activities.value.forEach(a => {
-      combinedList.push({
-        id: a.id,
-        name: a.name,
-        price: a.price,
-        image: a.image_url,
-        description: a.description,
-        href: `/activities/${a.slug}`,
-        type: 'class',
-      });
-    });
-  }
-
-  // Shuffle and return 4 items
-  return combinedList.sort(() => 0.5 - Math.random()).slice(0, 4);
+const recommendedProducts = computed((): RecommendedItem[] => {
+  if (!products.value) return [];
+  const productList: RecommendedItem[] = products.value.map(p => ({
+    id: p.id,
+    name: p.name,
+    price: p.price,
+    image: p.image,
+    description: p.color,
+    href: `/shop/${p.id}`,
+    type: 'product',
+  }));
+  return productList.sort(() => 0.5 - Math.random()).slice(0, 4);
 });
 
 const addRecommendedToCart = (item: RecommendedItem) => {

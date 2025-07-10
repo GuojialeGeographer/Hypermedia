@@ -20,7 +20,10 @@
       <!-- Main Layout -->
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-x-8">
         <!-- Left Sidebar - Filters -->
-        <ProductFilters />
+        <slot name="filters">
+          <!-- Fallback content if no filter slot is provided -->
+          <ProductFilters active-filter="" />
+        </slot>
 
         <!-- Right Content - Products -->
         <div class="lg:col-span-4">

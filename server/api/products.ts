@@ -5,11 +5,12 @@ const allProducts: Product[] = [
     id: 1,
     name: 'Cross Back Performace Bra',
     href: '/shop/1',
-    imageSrc: '/images/products/image-26.png',
+    image: '/images/products/image-26.png',
     imageAlt: 'Model wearing the Cross Back Performance Bra in Dewberry.',
-    price: '€45.00',
+    price: 45.00,
     color: 'Dewberry',
     category: 'top',
+    tags: ['new-arrival'],
     description: 'Designed for comfort and style, this performance bra features a unique cross-back design that provides excellent support during your yoga sessions. The moisture-wicking fabric keeps you dry and comfortable.',
     details: 'Four-way stretch fabric for optimal movement. Removable cups for customizable coverage.',
     materials: '80% Recycled Polyester, 20% Spandex. Machine wash cold, hang to dry.',
@@ -18,11 +19,12 @@ const allProducts: Product[] = [
     id: 2,
     name: 'Curved Seam Side Legging',
     href: '/shop/2',
-    imageSrc: '/images/products/image-38.png',
+    image: '/images/products/image-38.png',
     imageAlt: 'Model wearing the Curved Seam Side Legging in Dewberry.',
-    price: '€65.00',
+    price: 65.00,
     color: 'Dewberry',
     category: 'bottom',
+    tags: ['new-arrival'],
     description: 'Our signature leggings, updated with a flattering curved seam. The high-waisted design offers a secure fit, while the side pocket is perfect for storing your essentials on the go.',
     details: 'High-rise waistband with a compressive fit. Convenient side pocket for phone or keys.',
     materials: '75% Nylon, 25% Lycra. Machine wash cold with like colors.',
@@ -31,11 +33,12 @@ const allProducts: Product[] = [
     id: 3,
     name: 'Long Sleeve Zip Front Performance Jacket',
     href: '/shop/3',
-    imageSrc: '/images/products/image-36.png',
+    image: '/images/products/image-36.png',
     imageAlt: 'Model wearing the Long Sleeve Zip Front Performance Jacket in Dewberry.',
-    price: '€85.00',
+    price: 85.00,
     color: 'Dewberry',
     category: 'jacket',
+    tags: ['new-arrival'],
     description: 'The perfect layering piece for to and from the studio. This lightweight jacket is made from a soft, breathable fabric and features a full-zip front for easy on and off.',
     details: 'Thumbholes to keep sleeves in place. Secure front zip pockets for your belongings.',
     materials: '90% Polyester, 10% Spandex. Water-repellent finish.',
@@ -44,11 +47,12 @@ const allProducts: Product[] = [
     id: 4,
     name: 'Short Sleeve Fitted Performance Tee',
     href: '/shop/4',
-    imageSrc: '/images/products/image-15.png',
+    image: '/images/products/image-15.png',
     imageAlt: 'Model wearing the Short Sleeve Fitted Performance Tee in Dewberry.',
-    price: '€42.00',
+    price: 42.00,
     color: 'Dewberry',
     category: 'top',
+    tags: ['new-arrival'],
     description: 'A versatile tee that combines performance with everyday comfort. The fitted silhouette moves with you, while the ultra-soft Pima cotton feels great against your skin.',
     details: 'Crewneck design with a body-hugging fit. Breathable and lightweight.',
     materials: '100% Pima Cotton. Wash on a gentle cycle.',
@@ -59,6 +63,8 @@ const allProducts: Product[] = [
 export default defineEventHandler((event) => {
   const query = getQuery(event);
   const id = query.id ? parseInt(query.id as string, 10) : null;
+  const tags = query.tags as string;
+  const limit = query.limit ? parseInt(query.limit as string, 10) : undefined;
 
   if (id) {
     const product = allProducts.find((p) => p.id === id);
@@ -71,6 +77,15 @@ export default defineEventHandler((event) => {
     });
   }
 
-  // For the shop page, we only want to show the first 4 "New Arrivals"
-  return allProducts.slice(0, 4);
+  let products = allProducts;
+
+  if (tags) {
+    products = products.filter(p => p.tags && p.tags.includes(tags));
+  }
+
+  if (limit) {
+    products = products.slice(0, limit);
+  }
+
+  return products;
 }); 

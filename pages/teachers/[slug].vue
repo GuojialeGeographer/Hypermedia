@@ -15,7 +15,7 @@
       </nav>
 
       <!-- Teacher Details Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
         <!-- Left Column: Image -->
         <div>
@@ -23,27 +23,27 @@
         </div>
 
         <!-- Right Column: Info -->
-        <div class="space-y-6">
-          <h1 class="text-4xl font-bold text-black">{{ teacher.name }}</h1>
+        <div class="space-y-8">
+          <h1 class="text-5xl font-bold text-black">{{ teacher.name }}</h1>
           
           <div>
-            <h2 class="font-bold text-lg text-black mb-2">ABOUT:</h2>
-            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.bio }}</p>
+            <h2 class="font-bold text-xl text-black mb-3">ABOUT:</h2>
+            <p class="text-lg text-gray-700 leading-loose">{{ teacher.bio }}</p>
           </div>
           
           <div>
-            <h2 class="font-bold text-lg text-black mb-2">Teaching Style:</h2>
-            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.teachingStyle }}</p>
+            <h2 class="font-bold text-xl text-black mb-3">Teaching Style:</h2>
+            <p class="text-lg text-gray-700 leading-loose">{{ teacher.teachingStyle }}</p>
           </div>
 
           <div>
-            <h2 class="font-bold text-lg text-black mb-2">Yoga Philosophy:</h2>
-            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.yogaPhilosophy }}</p>
+            <h2 class="font-bold text-xl text-black mb-3">Yoga Philosophy:</h2>
+            <p class="text-lg text-gray-700 leading-loose">{{ teacher.yogaPhilosophy }}</p>
           </div>
 
           <div>
-            <h2 class="font-bold text-lg text-black mb-2">Course:</h2>
-            <p class="text-base text-gray-700 leading-relaxed">{{ teacher.courses.join(', ') }}</p>
+            <h2 class="font-bold text-xl text-black mb-3">Course:</h2>
+            <p class="text-lg text-gray-700 leading-loose">{{ teacher.courses.join(', ') }}</p>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ export interface Teacher {
 export interface Activity {
   id: number;
   name: string;
+  slug?: string;
   image_url: string;
   description: string;
   long_description: string;
@@ -43,12 +44,14 @@ export interface Product {
   id: number;
   name: string;
   href: string;
-  imageSrc: string;
+  brand?: string; // Make brand optional
+  price: number; // Change price to number
+  image: string; // Rename imageSrc to image
   imageAlt: string;
-  price: string;
   color: string;
-  category: 'top' | 'bottom' | 'jacket';
-  description?: string;
-  details?: string;
-  materials?: string;
+  category: string;
+  description: string;
+  details: string;
+  materials: string;
+  tags?: string[];
 } 

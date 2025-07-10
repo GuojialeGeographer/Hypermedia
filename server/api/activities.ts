@@ -121,9 +121,58 @@ const activities: Activity[] = [
     is_featured: true,
     price: 168,
   },
+  {
+    id: 9,
+    name: 'Sunday Sunrise Vinyasa',
+    slug: 'sunday-sunrise-vinyasa',
+    description: 'Start your Sunday with an energizing vinyasa flow as the sun rises. This class focuses on synchronizing breath with movement to awaken the body and mind.',
+    long_description: 'Greet the new week with our Sunday Sunrise Vinyasa. This is an all-levels class designed to build heat, endurance, and flexibility. The flowing sequence of postures will leave you feeling refreshed, centered, and ready to embrace the day. A perfect way to cultivate a positive mindset for the week ahead.',
+    image_url: '/images/activities/activity-sunday.png',
+    teacher_ids: [1, 5],
+    duration: 75,
+    location: 'Rooftop Deck',
+    schedule: { day: 'Sunday', time: '7:00 AM' },
+    intensity: 'Intermediate',
+    capacity: 25,
+    is_featured: true,
+    price: 158,
+  },
+  {
+    id: 10,
+    name: 'Members Exclusive: Deep Stretch & Sound Healing',
+    slug: 'members-exclusive-deep-stretch-sound-healing',
+    description: 'An exclusive workshop for our members, combining deep stretching with the therapeutic vibrations of sound healing.',
+    long_description: 'This exclusive members-only workshop offers a unique journey into deep relaxation. We will begin with a series of prolonged, passive stretches to release tension in the connective tissues. The session will conclude with a sound bath, using crystal bowls and chimes to create a meditative soundscape that promotes healing and balance. A truly restorative experience for body and soul.',
+    image_url: '/images/activities/activity-special.png',
+    teacher_ids: [3, 4],
+    duration: 90,
+    location: 'Studio C',
+    schedule: { day: 'Last Saturday of the month', time: '4:00 PM' },
+    intensity: 'All Levels',
+    capacity: 15,
+    is_featured: true,
+    price: 0, // Free for members
+  }
 ]
 
 export default defineEventHandler((event) => {
+  const slugParam = event.context.params?.slug
+
+  if (slugParam) {
+    const activity = activities.find(a => a.slug === slugParam)
+
+    if (activity) {
+      return activity
+    }
+    else {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Activity Not Found',
+      })
+    }
+  }
+
+  // Fallback for ID-based lookup if needed, or just return all
   const idParam = event.context.params?.id
   if (idParam) {
     const id = parseInt(idParam, 10)

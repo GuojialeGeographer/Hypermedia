@@ -29,18 +29,20 @@
           
           <!-- Details on the right -->
           <div 
-            class="w-full lg:w-2/5 rounded-2xl p-8 relative flex flex-col justify-center"
+            class="w-full lg:w-2/5 rounded-2xl p-8 flex flex-col justify-center"
             :style="{ backgroundColor: activity.bgColor }"
           >
-            <div v-if="activity.isFree" class="absolute top-8 right-2 bg-white border border-[#4e7749] rounded-lg px-4 py-1">
-              <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-base">Free Trial</NuxtLink>
-            </div>
-            <div v-else-if="activity.isMembersOnly" class="absolute top-8 right-2 bg-white border border-[#432963] rounded-lg px-4 py-1">
-              <NuxtLink to="/subscription" class="text-[#36254a] font-bold text-base">Register</NuxtLink>
-            </div>
-            
-            <div class="text-left max-w-md mx-auto">
-              <h3 class="font-semibold text-2xl mb-1" :style="{ color: activity.titleColor }">{{ activity.title }}</h3>
+            <div class="text-left max-w-md mx-auto w-full">
+              <div class="flex justify-between items-start mb-1">
+                <h3 class="font-semibold text-2xl" :style="{ color: activity.titleColor }">{{ activity.title }}</h3>
+                <div v-if="activity.isFree" class="bg-white border border-[#4e7749] rounded-lg px-4 py-1 flex-shrink-0 ml-4">
+                  <NuxtLink to="/login" class="text-[#2d5a27] font-bold text-base">Free Trial</NuxtLink>
+                </div>
+                <div v-else-if="activity.isMembersOnly" class="bg-white border border-[#432963] rounded-lg px-4 py-1 flex-shrink-0 ml-4">
+                  <NuxtLink to="/subscription" class="text-[#36254a] font-bold text-base">Register</NuxtLink>
+                </div>
+              </div>
+              
               <h4 class="text-3xl font-normal mb-2" :style="{ color: activity.subtitleColor }">{{ activity.subtitle }}</h4>
               <p class="text-xl mb-4" :style="{ color: activity.descriptionColor }">{{ activity.description }}</p>
 

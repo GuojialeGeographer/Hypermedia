@@ -23,11 +23,10 @@ jobs:
 
       - name: Generate static site
         run: npm run generate
-        working-directory: ./hypermedia-yoga-center
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./hypermedia-yoga-center/dist
+          publish_dir: ./.output/public
           publish_branch: gh-pages 
